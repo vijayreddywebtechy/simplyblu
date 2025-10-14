@@ -14,7 +14,7 @@ const Page = () => {
   const steps = [
     {
       label: "Personal Details",
-      description: "Provide your personal details",
+      description: "This product is only for South African ID holders.",
       content: <PersonalDetails onNext={() => setActiveStep(1)} />,
     },
     {
