@@ -35,3 +35,7 @@ body {
 .pointer{
   cursor: pointer !important;
 }
+
+button {
+  @apply cursor-pointer;
+}
