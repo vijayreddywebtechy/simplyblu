@@ -7,7 +7,7 @@ import { ChevronLeft } from "lucide-react";
 
 const selectSuits = () => {
   return (
-    <div className="w-full max-w-7xl mx-auto py-10 px-4">
+    <div className="min-h-screen p-4 md:p-10 bg-gray-100">
       <div className="text-center mb-6">
         <Link
           href="/simplyblu/application"
@@ -27,7 +27,7 @@ const selectSuits = () => {
 
       <div className="flex items-center justify-center">
         <div className="w-full max-w-[1200px] bg-white rounded-[20px] px-4 py-11">
-          <div className="grid md:grid-cols-2 gap-0 max-w-[900px] mx-auto md:border-b md:pb-10">
+          <div className="grid md:grid-cols-2 gap-0 max-w-[900px] mx-auto md:border-b border-gray-200 md:pb-10">
             {/* Existing Customer Section */}
             <div className="px-0 pb-10 md:pb-0 sm:px-4 flex flex-col items-center border-b md:border-b-0 md:border-r border-gray-200">
               <div className="w-full max-w-[352px] md:mr-auto md:min-h-96 flex flex-col justify-between">
