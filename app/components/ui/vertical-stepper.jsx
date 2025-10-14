@@ -12,22 +12,22 @@ export function VerticalStepper({ steps, activeStep, onStepClick, className = ""
         const isLast = index === steps.length - 1;
 
         const circleClass = `
-          relative flex h-10 w-10 items-center justify-center rounded-full border-2 transition-all
+          relative flex h-10 w-10 items-center justify-center rounded-full border-2 transition-all text-gray-700
           ${isCompleted ? "border-blue-600 bg-blue-600 text-white hover:bg-blue-700" : ""}
           ${isActive ? "border-blue-600 bg-blue-600 text-white shadow-lg" : ""}
-          ${!isActive && !isCompleted ? "border-gray-300 bg-white text-gray-600" : ""}
+          ${!isActive && !isCompleted ? "border-gray-300 bg-gray-300 text-gray-600" : ""}
           ${onStepClick ? "cursor-pointer hover:shadow-md" : "cursor-default"}
         `;
 
         const labelClass = `
-          mb-1 font-medium transition-colors
-          ${isActive ? "text-blue-600" : ""}
-          ${isCompleted ? "text-gray-900" : ""}
+          transition-colors font-bspro text-base font-medium leading-normal mt-2
+          ${isActive ? "text-primary" : ""}
+          ${isCompleted ? "text-gray-700" : ""}
           ${!isActive && !isCompleted ? "text-gray-500" : ""}
         `;
 
         const descClass = `
-          text-sm transition-colors mb-2
+          transition-colors font-bspro text-base font-normal leading-normal mt-1
           ${isActive ? "text-gray-700" : "text-gray-500"}
         `;
 
@@ -43,7 +43,7 @@ export function VerticalStepper({ steps, activeStep, onStepClick, className = ""
                 {isCompleted ? (
                   <Check className="h-5 w-5" />
                 ) : (
-                  <span className="text-sm font-semibold">{index + 1}</span>
+                  <span className="text-base font-medium leading-normal">{index + 1}</span>
                 )}
               </button>
 
@@ -61,7 +61,7 @@ export function VerticalStepper({ steps, activeStep, onStepClick, className = ""
             <div className={`flex-1 pb-8 ${isLast ? "pb-0" : ""}`}>
               <div className={labelClass}>{step.label}</div>
               {step.description && <div className={descClass}>{step.description}</div>}
-              {isActive && step.content && <div className="mt-4">{step.content}</div>}
+              {isActive && step.content && <div className="mt-5">{step.content}</div>}
             </div>
           </div>
         );
