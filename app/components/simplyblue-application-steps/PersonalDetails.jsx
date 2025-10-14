@@ -106,7 +106,7 @@ const PersonalDetails = ({ onNext }) => {
           onClick={onNext}
           className="px-4 py-0.5 text-primary hover:bg-primary font-bspro text-sm leading-normal font-bold rounded transition"
         >
-          NEXT
+          conti
         </button>
       </div>
     </div>
