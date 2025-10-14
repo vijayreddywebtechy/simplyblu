@@ -27,7 +27,7 @@ const selectSuits = () => {
       </div>
 
       <div className="text-center mb-24">
-        <h1 className="text-5xl font-medium mb-4">SimplyBLU</h1>
+        <h1 className="text-5xl font-medium mb-4 text-gray-700">SimplyBLU</h1>
         <p className="text-xl text-gray-700">
           Select the option that best suits your business
         </p>
