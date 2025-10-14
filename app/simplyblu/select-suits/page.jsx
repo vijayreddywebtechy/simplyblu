@@ -4,8 +4,16 @@ import React from "react";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import { ChevronLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const selectSuits = () => {
+
+  const router = useRouter();
+
+  const handleRegister = () => {
+    router.push("/simplyblu/application");
+  }
+
   return (
     <div className="min-h-screen p-4 md:p-10 bg-gray-100">
       <div className="text-center mb-6">
@@ -74,7 +82,7 @@ const selectSuits = () => {
                   variant="primary"
                   size="lg"
                   className="mt-auto mb-4 pointer"
-                  onClick={() => console.log("Clicked!")}
+                  onClick={() => handleRegister()}
                 >
                   REGISTER
                 </Button>

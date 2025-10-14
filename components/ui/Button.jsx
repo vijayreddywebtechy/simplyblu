@@ -16,7 +16,7 @@ const Button = ({
     "inline-flex items-center justify-center font-medium rounded md:rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
 
   const variants = {
-    primary: "bg-primary text-white hover:bg-primary/90 focus:ring-primary border-2 border-transparent",
+    primary: "bg-primary text-white hover:bg-primary-dark focus:ring-primary border-2 border-transparent",
     secondary: "bg-secondary text-white hover:bg-secondary/90 focus:ring-secondary border-2 border-transparent",
     outline: "border-2 border-primary text-primary hover:bg-primary hover:text-white focus:ring-primary bg-transparent",
     ghost: "text-foreground hover:bg-foreground/10 focus:ring-foreground/20 border-2 border-transparent",

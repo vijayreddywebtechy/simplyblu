@@ -1,21 +1,18 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
+/* ---------- Root Theme Variables ---------- */
+:root {
+  /* Colors */
   --color-background: #ffffff;
   --color-foreground: #171717;
 
-  --color-primary: #0062e1;
-  --color-primary-light: #3889FF;
+  /* --color-primary: #0062e1;
+  --color-primary-light: #3889ff;
   --color-primary-medium: #0241bd;
   --color-primary-dark: #0033a1;
-  --color-secondary: #1a314d;
-
-  --font-bspro: var(--font-bspro), system-ui, sans-serif;
-}
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-secondary: #1a314d; */
 }
 
 /* ---------- Dark Mode Support ---------- */
@@ -26,17 +23,21 @@
   }
 }
 
+/* ---------- Global Styles ---------- */
 body {
-  background: var(--background);
-  font-family: var(--font-bspro), system-ui, -apple-system, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.pointer{
+/* ---------- Utility Classes ---------- */
+.pointer {
   cursor: pointer !important;
 }
 
+/* Example (optional) - Tailwind can do this too:
 button {
   @apply cursor-pointer;
 }
+*/
