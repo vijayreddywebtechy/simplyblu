@@ -1,9 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import googlePlayBadge from '../../../public/img/google-play-badge.png'
-import appStoreBadge from '../../../public/img/app-store-badge.png'
-import deviceApp from '../../../public/img/device-app.png'
+import googlePlayBadge from '@/public/img/google-play-badge.png'
+import appStoreBadge from '@/public/img/app-store-badge.png'
+import deviceApp from '@/public/img/device-app.png'
 
 const Footer = () => {
   return (

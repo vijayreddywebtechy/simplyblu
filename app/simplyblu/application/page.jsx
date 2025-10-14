@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import { VerticalStepper } from "@/app/components/ui/vertical-stepper";
-import PersonalDetails from "@/app/components/simplyblue-application-steps/PersonalDetails";
-import CompanyDetails from "@/app/components/simplyblue-application-steps/CompanyDetails";
-import ProductSetup from "@/app/components/simplyblue-application-steps/ProductSetup";
-import DeliveryDetails from "@/app/components/simplyblue-application-steps/DeliveryDetails";
-import Conscents from "@/app/components/simplyblue-application-steps/Conscents";
+import { VerticalStepper } from "@/components/ui/vertical-stepper";
+import PersonalDetails from "@/components/simplyblue-application-steps/PersonalDetails";
+import CompanyDetails from "@/components/simplyblue-application-steps/CompanyDetails";
+import ProductSetup from "@/components/simplyblue-application-steps/ProductSetup";
+import DeliveryDetails from "@/components/simplyblue-application-steps/DeliveryDetails";
+import Conscents from "@/components/simplyblue-application-steps/Conscents";
 
 const Page = () => {
   const [activeStep, setActiveStep] = useState(0);

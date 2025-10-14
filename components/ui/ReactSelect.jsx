@@ -2,7 +2,7 @@
 
 import Select from 'react-select';
 import Image from 'next/image';
-import arrowDownSolid from '../../../public/icons/icn_arrow_solid_down.svg';
+import arrowDownSolid from '@/public/icons/icn_arrow_solid_down.svg';
 
 export default function ReactSelect({
   options = [],

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import Button from "@/app/components/ui/Button";
+import Button from "@/components/ui/Button";
 import { ChevronLeft } from "lucide-react";
 
 const selectSuits = () => {
