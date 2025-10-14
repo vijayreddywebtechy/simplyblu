@@ -42,7 +42,7 @@ const CustomInput = ({
     <div className="w-full">
       <div className="relative w-full">
         {prefix && (
-          <div className="absolute left-3 top-1/2 transform -translate-y-1/2 flex items-center justify-center pointer-events-none">
+          <div className="absolute left-4 top-1/2 transform -translate-y-1/2 flex items-center justify-center pointer-events-none">
             {renderPrefix()}
           </div>
         )}

@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import standartbankLogo from '../../../public/standardbank-logo.svg'
+import standartbankLogo from '@/public/standardbank-logo.svg'
 
 const Header = () => {
   return (

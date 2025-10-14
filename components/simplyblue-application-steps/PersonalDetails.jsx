@@ -1,12 +1,21 @@
 "use client";
 
 import React, { useState } from "react";
-import CustomInput from "../ui/CustomInput";
-import ReactSelect from "../ui/ReactSelect";
-import CustomRadio from "../ui/CustomRadio";
+import CustomInput from "@/components/ui/CustomInput";
+import ReactSelect from "@/components/ui/ReactSelect";
+import CustomRadio from "@/components/ui/CustomRadio";
 import Image from "next/image";
-import infoIcon from "../../../public/icons/icn_info.svg";
-import toolTipIcon from "../../../public/icons/icn_tooltip.svg";
+import infoIcon from "@/public/icons/icn_info.svg";
+import toolTipIcon from "@/public/icons/icn_tooltip.svg";
+
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import Button from "../ui/Button";
+import LabelWithTooltip from "../ui/CustomLabel";
 
 const PersonalDetails = ({ onNext }) => {
   const [framework, setFramework] = useState(null);
@@ -27,12 +36,9 @@ const PersonalDetails = ({ onNext }) => {
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-12">
           <div>
-            <div className="inline-flex items-center mb-1.5">
-              <label className="font-bspro text-xs font-medium text-gray-500 block">
-                NAME (as per ID) NAME (as per ID){" "}
-              </label>
-              <button type="button" className="ml-1.5 cursor-pointer"><Image src={toolTipIcon} width={14} height={14}/> </button>
-            </div>
+          <LabelWithTooltip
+            label="NAME (as per ID)" 
+          />
             <CustomInput
               placeholder="Enter your first name"
               value=""
@@ -252,10 +258,10 @@ const PersonalDetails = ({ onNext }) => {
       </div>
 
 
-      <div className="flex justify-end mt-6 bg-slate-50 p-4">
+      <div className="flex justify-end mt-6 bg-slate-50 px-4 py-2">
         <button
           onClick={onNext}
-          className="px-4 py-0.5 text-primary hover:bg-primary font-bspro text-sm leading-normal font-bold rounded transition"
+          className="px-4 py-2 text-primary hover:bg-blue-100 font-bspro text-sm leading-normal font-medium rounded transition"
         >
           NEXT
         </button>
