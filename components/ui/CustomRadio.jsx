@@ -28,7 +28,7 @@ const CustomRadio = ({
       <span 
         className={`
           relative flex items-center justify-center
-          w-6 h-6 rounded-full border-2 transition-all
+          min-w-6 min-h-6 rounded-full border-2 transition-all
           ${checked 
             ? 'border-blue-500 bg-white' 
             : 'border-gray-300 bg-white hover:border-gray-400'
@@ -41,7 +41,7 @@ const CustomRadio = ({
         )}
       </span>
       {label && (
-        <span className="ml-2 text-base font-bspro leading-normal text-gray-700 select-none">
+        <span className="ml-2 text-sm sm:text-base font-bspro leading-normal text-gray-700 select-none">
           {label}
         </span>
       )}
