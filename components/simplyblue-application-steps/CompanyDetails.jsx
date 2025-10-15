@@ -205,7 +205,7 @@ const CompanyDetails = ({ onNext, onBack }) => {
           Trading Address
         </h3>
         <div className="mb-4">
-          <div className="flex space-x-6">
+          <div className="flex gap-6 flex-wrap">
             <CustomRadio
               id="same-address"
               name="trading-address"
@@ -287,7 +287,7 @@ const CompanyDetails = ({ onNext, onBack }) => {
         </div>
       </div>
 
-      <div className="flex justify-between mt-6 bg-slate-50 px-4 py-2">
+      <div className="flex justify-between mt-6 bg-slate-50 px-4 py-2 rounded-b-xl">
         <button
           onClick={onBack}
           className="px-4 py-2 text-primary hover:bg-blue-100 font-bspro text-sm leading-normal font-medium rounded transition"

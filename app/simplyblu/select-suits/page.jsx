@@ -15,8 +15,8 @@ const selectSuits = () => {
   }
 
   return (
-    <div className="min-h-screen p-4 md:p-10 bg-gray-100">
-      <div className="text-center mb-6">
+    <div className="min-h-screen p-4 lg:p-10 bg-gray-100">
+      <div className="text-center mb-4 md:mb-6">
         <Link
           href="/simplyblu/application"
           className="inline-flex items-center text-sm text-primary"
@@ -26,9 +26,9 @@ const selectSuits = () => {
         </Link>
       </div>
 
-      <div className="text-center mb-24">
-        <h1 className="text-5xl font-medium mb-4 text-gray-700">SimplyBLU</h1>
-        <p className="text-xl text-gray-700">
+      <div className="text-center mb-10 md:14 lg:mb-16 xl:mb-24">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium mb-3 md:mb-4 text-secondary">SimplyBLU</h1>
+        <p className="text-base sm:text-lg lg:text-xl font-normal text-secondary leading-normal">
           Select the option that best suits your business
         </p>
       </div>

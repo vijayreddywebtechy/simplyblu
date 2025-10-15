@@ -31,7 +31,7 @@ const PersonalDetails = ({ onNext }) => {
     <div className="border border-gray-200 rounded-xl">
       {/* Personal Details */}
       <div className="p-4">
-        <h3 className="font-bspro text-xl font-medium text-gray-600 mb-8">
+        <h3 className="font-bspro text-lg md:text-xl font-medium text-gray-600 mb-8">
           Personal Details
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-12">
@@ -171,7 +171,7 @@ const PersonalDetails = ({ onNext }) => {
 
       {/* Residential Details */}
       <div className="p-4">
-        <h3 className="font-bspro text-xl font-medium text-gray-600 mb-8">
+        <h3 className="font-bspro text-lg md:text-xl font-medium text-gray-600 mb-8">
           Residential Details
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-12">
@@ -258,7 +258,7 @@ const PersonalDetails = ({ onNext }) => {
       </div>
 
 
-      <div className="flex justify-end mt-6 bg-slate-50 px-4 py-2">
+      <div className="flex justify-end mt-6 bg-slate-50 px-4 py-2 rounded-b-xl">
         <button
           onClick={onNext}
           className="px-4 py-2 text-primary hover:bg-blue-100 font-bspro text-sm leading-normal font-medium rounded transition"

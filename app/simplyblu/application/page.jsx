@@ -46,9 +46,14 @@ const Page = () => {
   ];
 
   return (
-    <div className="w-full max-w-7xl mx-auto py-10 px-4">
-      <h1 className="text-[32px] font-normal text-secondary leading-tight mb-3.5">SimplyBlue Application</h1>
-      <p className="text-xl font-normal text-secondary leading-normal mb-16">Please provide us with details to begin the application process. We’ll use this information to verify your business</p>
+    <div className="w-full max-w-7xl mx-auto py-10 px-4 h-">
+      <h1 className="text-2xl sm:text-3xl lg:text-[32px] font-normal text-secondary leading-tight mb-2.5 sm:mb-3 lg:mb-3.5">
+        SimplyBlue Application
+      </h1>
+      <p className="text-base sm:text-lg lg:text-xl font-normal text-secondary leading-normal mb-8 sm:mb-12 lg:mb-16">
+        Please provide us with details to begin the application process. We'll use this information to verify your business
+      </p>
+
       <VerticalStepper
         steps={steps}
         activeStep={activeStep}
