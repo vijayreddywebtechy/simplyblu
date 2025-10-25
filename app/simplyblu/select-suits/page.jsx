@@ -2,17 +2,16 @@
 
 import React from "react";
 import Link from "next/link";
-import Button from "@/components/ui/Button";
 import { ChevronLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 const selectSuits = () => {
-
   const router = useRouter();
 
   const handleRegister = () => {
     router.push("/simplyblu/application");
-  }
+  };
 
   return (
     <div className="min-h-screen p-4 lg:p-10 bg-gray-100">
@@ -27,7 +26,9 @@ const selectSuits = () => {
       </div>
 
       <div className="text-center mb-10 md:14 lg:mb-16 xl:mb-24">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium mb-3 md:mb-4 text-secondary">SimplyBLU</h1>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium mb-3 md:mb-4 text-secondary">
+          SimplyBLU
+        </h1>
         <p className="text-base sm:text-lg lg:text-xl font-normal text-secondary leading-normal">
           Select the option that best suits your business
         </p>
@@ -49,9 +50,7 @@ const selectSuits = () => {
                   Sign in using your Standard Bank username and password
                 </p>
                 <Button
-                  variant="primary"
-                  size="lg"
-                  className="mt-auto mb-4 pointer"
+                  className="mt-auto mb-4 sm:h-[50px] text-white uppercase"
                   onClick={() => console.log("Clicked!")}
                 >
                   SIGN IN
@@ -79,9 +78,7 @@ const selectSuits = () => {
                 </p>
 
                 <Button
-                  variant="primary"
-                  size="lg"
-                  className="mt-auto mb-4 pointer"
+                  className="mt-auto mb-4 sm:h-[50px] text-white uppercase"
                   onClick={() => handleRegister()}
                 >
                   REGISTER

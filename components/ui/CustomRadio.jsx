@@ -28,7 +28,7 @@ const CustomRadio = ({
       <span 
         className={`
           relative flex items-center justify-center
-          min-w-6 min-h-6 rounded-full border-2 transition-all
+          min-w-5 min-h-5 rounded-full border-2 transition-all
           ${checked 
             ? 'border-blue-500 bg-white' 
             : 'border-gray-300 bg-white hover:border-gray-400'

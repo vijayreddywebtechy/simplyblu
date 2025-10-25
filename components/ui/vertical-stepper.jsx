@@ -27,12 +27,12 @@ export function VerticalStepper({ steps, activeStep, onStepClick, className = ""
         `;
 
         const descClass = `
-          transition-colors font-bspro text-base font-normal leading-normal mt-1
+          transition-colors font-bspro text-sm md:text-base font-normal leading-normal mt-1
           ${isActive ? "text-gray-700" : "text-gray-500"}
         `;
 
         return (
-          <div key={index} className="flex gap-2.5 md:gap-4">
+          <div key={index} className="flex gap-2 md:gap-4">
             {/* Step Circle + Connector */}
             <div className="flex flex-col items-center">
               <button

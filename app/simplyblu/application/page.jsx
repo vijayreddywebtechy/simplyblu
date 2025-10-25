@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { VerticalStepper } from "@/components/ui/vertical-stepper";
 import PersonalDetails from "@/components/simplyblue-application-steps/PersonalDetails";
-import CompanyDetails from "@/components/simplyblue-application-steps/CompanyDetails";
+import CompanyDetails from "@/components/simplyblue-application-steps/CompnayDetails";
 import ProductSetup from "@/components/simplyblue-application-steps/ProductSetup";
 import DeliveryDetails from "@/components/simplyblue-application-steps/DeliveryDetails";
 import Conscents from "@/components/simplyblue-application-steps/Conscents";
@@ -19,39 +19,49 @@ const Page = () => {
     },
     {
       label: "Company Details",
-      description: "Add your company information",
+      description: "",
       content: (
-        <CompanyDetails onNext={() => setActiveStep(2)} onBack={() => setActiveStep(0)} />
+        <CompanyDetails
+          onNext={() => setActiveStep(2)}
+          onBack={() => setActiveStep(0)}
+        />
       ),
     },
     {
       label: "Product Setup",
-      description: "Set up your product preferences",
+      description: "",
       content: (
-        <ProductSetup onNext={() => setActiveStep(3)} onBack={() => setActiveStep(1)} />
+        <ProductSetup
+          onNext={() => setActiveStep(3)}
+          onBack={() => setActiveStep(1)}
+        />
       ),
     },
     {
       label: "Delivery Details",
-      description: "Enter delivery information",
+      description: "",
       content: (
-        <DeliveryDetails onNext={() => setActiveStep(4)} onBack={() => setActiveStep(2)} />
+        <DeliveryDetails
+          onNext={() => setActiveStep(4)}
+          onBack={() => setActiveStep(2)}
+        />
       ),
     },
     {
       label: "Consents",
-      description: "Review and confirm consents",
+      description: "",
       content: <Conscents onBack={() => setActiveStep(3)} />,
     },
   ];
 
   return (
-    <div className="w-full max-w-7xl mx-auto py-10 px-4 h-">
-      <h1 className="text-2xl sm:text-3xl lg:text-[32px] font-normal text-secondary leading-tight mb-2.5 sm:mb-3 lg:mb-3.5">
+    <div className="w-full max-w-7xl mx-auto py-10 px-3">
+      <h1 className="text-2xl sm:text-3xl lg:text-[32px] font-normal text-secondary leading-tight mb-3.5">
         SimplyBlue Application
       </h1>
-      <p className="text-base sm:text-lg lg:text-xl font-normal text-secondary leading-normal mb-8 sm:mb-12 lg:mb-16">
-        Please provide us with details to begin the application process. We'll use this information to verify your business
+      <p className="text-base sm:text-lg md:text-xl lg:text-xl font-normal text-secondary leading-normal mb-12 md:mb-14">
+        Please provide us with details to begin the application process. We’ll
+        use this information to verify your business
       </p>
 
       <VerticalStepper

@@ -5,7 +5,7 @@ import standartbankLogo from '@/public/standardbank-logo.svg'
 
 const Header = () => {
   return (
-    <div className='w-full max-w-7xl mx-auto p-4 flex items-center justify-between gap-4'>
+    <div className='w-full max-w-7xl mx-auto py-4 flex items-center justify-between gap-4'>
         <Link href="/">
             <Image
               src={standartbankLogo}
