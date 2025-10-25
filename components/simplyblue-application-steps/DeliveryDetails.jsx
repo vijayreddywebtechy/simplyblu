@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import LabelWithTooltip from "../ui/CustomLabel";
-import CustomRadio from "../ui/CustomRadio";
+import LabelWithTooltip from "@/components/ui/CustomLabel";
+import CustomRadio from "@/components/ui/CustomRadio";
 import Image from "next/image";
 import homeIcon from "@/public/icons/icn_home.png";
 import infoIcon from "@/public/icons/icn_info.svg";
@@ -12,8 +12,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { ChevronDownIcon } from "lucide-react";
-import { Calendar } from "../ui/calendar";
-import { Button } from "../ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Select,

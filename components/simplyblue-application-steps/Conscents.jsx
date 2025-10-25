@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import CustomCheckbox from "../ui/CustomCheckbox";
-import CustomRadio from "../ui/CustomRadio";
+import CustomCheckbox from "@/components/ui/CustomCheckbox";
+import CustomRadio from "@/components/ui/CustomRadio";
 import infoIcon from "@/public/icons/icn_info.svg";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
