@@ -21,7 +21,7 @@ import amexcard from "@/public/img/american-express-card.png";
 import rcscard from "@/public/img/rcs-card.png";
 import receiptIcon from "@/public/icons/icn_receipt.svg";
 import LabelWithTooltip from "../ui/CustomLabel";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 
 const ProductSetup = ({ onNext, onBack }) => {
   const [selectedOptions, setSelectedOptions] = useState({

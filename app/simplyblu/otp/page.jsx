@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import LabelWithTooltip from "@/components/ui/CustomLabel";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";

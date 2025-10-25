@@ -14,7 +14,7 @@ import Image from "next/image";
 import toolTipIcon from "@/public/icons/icn_tooltip.svg";
 import LabelWithTooltip from "../ui/CustomLabel";
 import infoIcon from "@/public/icons/icn_info.svg";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 
 const CompanyDetails = ({ onNext, onBack }) => {
   const [businessType, setBusinessType] = useState("");

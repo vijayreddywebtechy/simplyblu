@@ -13,7 +13,7 @@ import masterCard from "@/public/img/mastercard.svg";
 import unionPay from "@/public/img/unionpay.svg";
 import dinersClub from "@/public/img/diners-pay.svg";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 
 const numClass = "text-3xl sm:text-4xl lg:text-[42px] text-secondary";
 const numDescClass = "text-xs text-gray-500 uppercase leading-tight";

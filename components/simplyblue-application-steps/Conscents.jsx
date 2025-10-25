@@ -5,7 +5,7 @@ import CustomCheckbox from "@/components/ui/CustomCheckbox";
 import CustomRadio from "@/components/ui/CustomRadio";
 import infoIcon from "@/public/icons/icn_info.svg";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { useRouter } from "next/navigation";
 
 const headingClass =
