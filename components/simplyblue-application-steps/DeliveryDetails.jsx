@@ -101,7 +101,7 @@ const DeliveryDetails = ({ onNext, onBack }) => {
                 <Button
                   variant="outline"
                   className={cn(
-                    "w-full justify-between text-left border-input text-sm md:text-base font-normal h-10 md:h-12 px-2 shadow-none hover:bg-white",
+                    "w-full justify-between text-left text-sm md:text-base font-normal px-2 shadow-none hover:bg-white",
                     !fromDate && "text-gray-light"
                   )}
                 >
