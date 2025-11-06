@@ -13,12 +13,12 @@ import {
   DialogTitle,
   DialogClose,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-const numClass = "text-[42px] text-secondary";
-const numDescClass = "text-xs text-gray-500 uppercase";
+const numClass = "text-[42px] text-gray-medium";
+const numDescClass = "text-xs text-gray-light uppercase";
 
 const page = () => {
   const [open, setOpen] = useState(false);
@@ -31,10 +31,10 @@ const page = () => {
     <div className="bg-slate-50 px-3 py-8">
       <div className="bg-white rounded-xl px-3 py-6 lg:p-14 max-w-7xl mx-auto">
         <div className="text-center mb-12 md:mb-16">
-          <h1 className="text-2xl sm:text-3xl lg:text-[32px] font-normal text-secondary leading-tight mb-3.5">
+          <h1 className="text-2xl sm:text-3xl lg:text-[32px] font-normal text-gray-medium leading-tight mb-3.5">
             Merchant app and card machine
           </h1>
-          <p className="text-base sm:text-lg md:text-xl lg:text-xl font-normal text-secondary leading-normal md:max-w-[80%] mx-auto">
+          <p className="text-base sm:text-lg md:text-xl lg:text-xl font-normal text-gray-medium leading-normal md:max-w-[80%] mx-auto">
             Confirm that the information for your card machine(s) is correct.
             You can download the app on Google Play or Apple Store.
           </p>
@@ -62,18 +62,18 @@ const page = () => {
             </div>
 
             <div className="p-5 sm:p-7">
-              <h3 className="text-2xl sm:text-3xl font-medium text-secondary text-center">
+              <h3 className="text-2xl sm:text-3xl font-medium text-gray-medium text-center">
                 Merchant App
               </h3>
             </div>
 
             <div className="p-5 sm:p-7 bg-slate-200 rounded-xl flex-1 flex flex-col">
-              <p className="text-sm sm:text-base text-gray-900 leading-normal mb-4 sm:mb-6">
+              <p className="text-sm sm:text-base text-gray-dark leading-normal mb-4 sm:mb-6">
                 Download the SimplyBLU merchant app and register using the
                 merchant number provided at the end of your application.
                 Transaction fees apply every time you use the app.
               </p>
-              <h4 className="text-lg sm:text-xl text-slate-800 mb-4">
+              <h4 className="text-lg sm:text-xl text-gray-medium mb-4">
                 Benefits
               </h4>
               <ul className="space-y-2 sm:space-y-3">
@@ -91,7 +91,7 @@ const page = () => {
                       className="h-5 w-5 sm:h-6 sm:w-6"
                       alt="tick"
                     />
-                    <p className="text-sm sm:text-base text-gray-500 leading-normal m-0">
+                    <p className="text-sm sm:text-base text-gray-light leading-normal m-0">
                       {text}
                     </p>
                   </li>
@@ -103,14 +103,6 @@ const page = () => {
           {/* Card Machine Card */}
           <div className="border border-gray-200 rounded-2xl overflow-hidden flex flex-col">
             <div className="h-12 sm:h-14 bg-gradient-to-tr from-[#0033A1] to-[#1F59D8] relative">
-              {/* <div
-                className="absolute left-0 top-0 px-3 py-0.5 bg-no-repeat bg-cover"
-                style={{ backgroundImage: "url(/img/clippath.svg)" }}
-              >
-                <span className="font-bspro text-xs sm:text-sm text-white leading-tight uppercase tracking-widest">
-                  Includes installation
-                </span>
-              </div> */}
               {/* Orange badge with angled edge */}
               <div className="absolute left-0 top-0 h-full flex">
                 <div className="relative bg-gradient-to-r from-orange-600 to-orange-300 h-6 px-4 flex items-center shadow-md">
@@ -144,7 +136,7 @@ const page = () => {
             </div>
 
             <div className="p-5 sm:p-7">
-              <h3 className="text-2xl sm:text-3xl font-medium text-secondary text-center">
+              <h3 className="text-2xl sm:text-3xl font-medium text-gray-medium text-center">
                 Card Machine
               </h3>
             </div>
@@ -216,22 +208,22 @@ const page = () => {
           {/* Scrollable Content */}
           <div className="max-w-full sm:max-w-[560px] mx-auto max-h-[70vh] overflow-y-auto p-3 sm:p-4 space-y-4">
             <div className="space-y-4 sm:space-y-6 px-1 sm:px-2">
-              <h3 className="text-gray-500 text-base sm:text-lg md:text-2xl mb-4 sm:mb-8 leading-snug sm:leading-normal">
+              <h3 className="text-gray-light text-base sm:text-lg md:text-2xl mb-4 sm:mb-8 leading-snug sm:leading-normal">
                 By clicking sign, I (being the duly authorised representative of
                 the company):
               </h3>
 
               <ul className="space-y-3 sm:space-y-4">
                 <li className="flex gap-2 sm:gap-3">
-                  <span className="text-gray-700">•</span>
+                  <span className="text-gray-light">•</span>
                   <div className="flex-1">
-                    <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+                    <p className="text-gray-medium text-sm sm:text-base leading-relaxed">
                       Confirm that I have read, understood and accept the
                       agreement on behalf of the company
                     </p>
                     <a
                       href="#"
-                      className="text-blue-600 hover:underline text-sm sm:text-base mt-2 inline-block"
+                      className="text-primary hover:underline text-sm sm:text-base mt-2 inline-block"
                     >
                       SimplyBLU Application information, disclosures and T&Cs
                     </a>
@@ -239,9 +231,9 @@ const page = () => {
                 </li>
 
                 <li className="flex gap-2 sm:gap-3">
-                  <span className="text-gray-700">•</span>
+                  <span className="text-gray-medium">•</span>
                   <div className="space-y-3 sm:space-y-4 flex-1">
-                    <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+                    <p className="text-gray-medium text-sm sm:text-base leading-relaxed">
                       Acknowledge that even though I have accepted the agreement
                       on behalf of the company, it does not mean that the
                       process is finalised. The account application/s will only
@@ -249,7 +241,7 @@ const page = () => {
                       completed the web facial recognition process.
                     </p>
 
-                    <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+                    <p className="text-gray-medium text-sm sm:text-base leading-relaxed">
                       Warrant on behalf of the company to the Bank on the date
                       of acceptance of the agreement and for the duration of the
                       agreement that:
@@ -265,8 +257,8 @@ const page = () => {
                         "The company is not in default in respect of any of its obligations in connection with the agreement and no default has occurred.",
                       ].map((text, idx) => (
                         <li key={idx} className="flex gap-2">
-                          <span className="text-gray-700">•</span>
-                          <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+                          <span className="text-gray-medium">•</span>
+                          <p className="text-gray-medium text-sm sm:text-base leading-relaxed">
                             {text}
                           </p>
                         </li>
@@ -281,6 +273,7 @@ const page = () => {
           {/* Action Button */}
           <div className="flex justify-center mt-4 sm:mt-6 px-4 sm:px-0">
             <Button
+              variant="default"
               onClick={() => {
                 alert("A new tab opens for customer to sign the agreement");
                 router.push("/simplyblu/otp");

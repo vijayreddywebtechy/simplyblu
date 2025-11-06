@@ -2,19 +2,12 @@
 
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import CustomRadio from "@/components/ui/CustomRadio";
+import CustomReactSelect from "@/components/ui/CustomReactSelect";
+import { Label } from "@/components/ui/label";
 import Image from "next/image";
-import toolTipIcon from "@/public/icons/icn_tooltip.svg";
-import LabelWithTooltip from "../ui/CustomLabel";
 import infoIcon from "@/public/icons/icn_info.svg";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const CompanyDetails = ({ onNext, onBack }) => {
   const [businessType, setBusinessType] = useState("");
@@ -37,37 +30,32 @@ const CompanyDetails = ({ onNext, onBack }) => {
     <div className="border border-gray-200 rounded-xl">
       {/* Business Details */}
       <div className="p-4 mb-5">
-        <h3 className="font-bspro text-xl font-medium text-gray-600 mb-5 sm:mb-6 md:mb-8">
+        <h3 className="text-lg md:text-xl font-medium text-gray-medium mb-5 sm:mb-6 md:mb-8">
           Business Details
         </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-12">
           {/* BUSINESS TYPE */}
           <div>
-            <LabelWithTooltip label="BUSINESS TYPE" />
-            <Select value={businessType} onValueChange={setBusinessType}>
-              <SelectTrigger>
-                <SelectValue placeholder="Sole Proprietor/Other" />
-              </SelectTrigger>
-              <SelectContent className="bg-white text-slate-600">
-                {businessTypeOptions.map((opt) => (
-                  <SelectItem key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <Label className="inline-flex mb-1.5">BUSINESS TYPE</Label>
+            <CustomReactSelect
+              instanceId="company-business-type"
+              value={businessTypeOptions.find((opt) => opt.value === businessType)}
+              onChange={(selectedOption) => setBusinessType(selectedOption?.value || "")}
+              options={businessTypeOptions}
+              placeholder="Sole Proprietor/Other"
+            />
           </div>
 
           {/* REGISTERED BUSINESS NAME */}
           <div>
-            <LabelWithTooltip label="REGISTERED BUSINESS NAME" />
+            <Label className="inline-flex mb-1.5">REGISTERED BUSINESS NAME</Label>
             <Input type="text" placeholder="Enter your business name" />
           </div>
 
           {/* GROSS ANNUAL TURNOVER (prefix R) */}
           <div>
-            <LabelWithTooltip label="GROSS ANNUAL TURNOVER" />
+            <Label className="inline-flex mb-1.5">GROSS ANNUAL TURNOVER</Label>
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm font-medium">
                 R
@@ -78,7 +66,7 @@ const CompanyDetails = ({ onNext, onBack }) => {
 
           {/* REGISTRATION NUMBER */}
           <div>
-            <LabelWithTooltip label="REGISTRATION NUMBER" />
+            <Label className="inline-flex mb-1.5">REGISTRATION NUMBER</Label>
             <Input
               type="text"
               placeholder="Enter your business registration number"
@@ -87,119 +75,84 @@ const CompanyDetails = ({ onNext, onBack }) => {
 
           {/* PROVINCE */}
           <div>
-            <LabelWithTooltip label="PROVINCE" />
-            <Select value={province} onValueChange={setProvince}>
-              <SelectTrigger>
-                <SelectValue placeholder="Please select" />
-              </SelectTrigger>
-              <SelectContent className="bg-white text-slate-600">
-                {provinceOptions.map((opt) => (
-                  <SelectItem key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <Label className="inline-flex mb-1.5">PROVINCE</Label>
+            <CustomReactSelect
+              instanceId="company-province"
+              value={provinceOptions.find((opt) => opt.value === province)}
+              onChange={(selectedOption) => setProvince(selectedOption?.value || "")}
+              options={provinceOptions}
+              placeholder="Please select"
+            />
           </div>
 
           {/* CITY */}
           <div>
-            <LabelWithTooltip label="CITY" />
-            <Select value={city} onValueChange={setCity}>
-              <SelectTrigger>
-                <SelectValue placeholder="Please select" />
-              </SelectTrigger>
-              <SelectContent className="bg-white text-slate-600">
-                {cityOptions.map((opt) => (
-                  <SelectItem key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <Label className="inline-flex mb-1.5">CITY</Label>
+            <CustomReactSelect
+              instanceId="company-city"
+              value={cityOptions.find((opt) => opt.value === city)}
+              onChange={(selectedOption) => setCity(selectedOption?.value || "")}
+              options={cityOptions}
+              placeholder="Please select"
+            />
           </div>
 
           {/* NATURE OF BUSINESS */}
           <div>
-            <LabelWithTooltip
-              label="NATURE OF BUSINESS"
-              tooltipText="Add to library"
-              tooltipIcon={toolTipIcon}
+            <Label className="inline-flex mb-1.5">NATURE OF BUSINESS</Label>
+            <CustomReactSelect
+              instanceId="company-nature"
+              value={natureOfBusiness ? { value: natureOfBusiness, label: natureOfBusiness } : null}
+              onChange={(selectedOption) => setNatureOfBusiness(selectedOption?.value || "")}
+              options={[{ value: "example", label: "Example" }]}
+              placeholder="Please select"
             />
-            <Select
-              value={natureOfBusiness}
-              onValueChange={setNatureOfBusiness}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Please select" />
-              </SelectTrigger>
-              <SelectContent className="bg-white text-slate-600">
-                {/* Example empty list */}
-                <SelectItem value="example">Example</SelectItem>
-              </SelectContent>
-            </Select>
           </div>
 
           {/* BUSINESS INDUSTRY */}
           <div>
-            <LabelWithTooltip
-              label="BUSINESS INDUSTRY"
-              tooltipText="Add to library"
-              tooltipIcon={toolTipIcon}
+            <Label className="inline-flex mb-1.5">BUSINESS INDUSTRY</Label>
+            <CustomReactSelect
+              instanceId="company-industry"
+              value={businessIndustry ? { value: businessIndustry, label: businessIndustry } : null}
+              onChange={(selectedOption) => setBusinessIndustry(selectedOption?.value || "")}
+              options={[{ value: "example", label: "Example" }]}
+              placeholder="Please select"
             />
-            <Select
-              value={businessIndustry}
-              onValueChange={setBusinessIndustry}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Please select" />
-              </SelectTrigger>
-              <SelectContent className="bg-white text-slate-600">
-                <SelectItem value="example">Example</SelectItem>
-              </SelectContent>
-            </Select>
           </div>
 
           {/* COUNTRY OF REGISTRATION */}
           <div>
-            <LabelWithTooltip label="COUNTRY OF REGISTRATION" />
-            <Select
-              value={countryOfRegistration}
-              onValueChange={setCountryOfRegistration}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="South Africa" />
-              </SelectTrigger>
-              <SelectContent className="bg-white text-slate-600">
-                {countryOptions.map((opt) => (
-                  <SelectItem key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <Label className="inline-flex mb-1.5">COUNTRY OF REGISTRATION</Label>
+            <CustomReactSelect
+              instanceId="company-country"
+              value={countryOptions.find((opt) => opt.value === countryOfRegistration)}
+              onChange={(selectedOption) => setCountryOfRegistration(selectedOption?.value || "")}
+              options={countryOptions}
+              placeholder="South Africa"
+            />
           </div>
         </div>
       </div>
 
       {/* Contact Details Section */}
       <div className="p-4 mb-5">
-        <h3 className="font-bspro text-xl font-medium text-gray-600 mb-5 sm:mb-6 md:mb-8">
+        <h3 className="text-lg md:text-xl font-medium text-gray-medium mb-5 sm:mb-6 md:mb-8">
           Contact Details
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-12">
           <div>
-            <LabelWithTooltip label="CELLPHONE NUMBER" />
+            <Label className="inline-flex mb-1.5">CELLPHONE NUMBER</Label>
             <Input type="tel" placeholder="076 567 894" />
           </div>
 
           <div>
-            <LabelWithTooltip label="EMAIL ADDRESS" />
+            <Label className="inline-flex mb-1.5">EMAIL ADDRESS</Label>
             <Input type="email" placeholder="Jessica@gmail.com" />
           </div>
 
           <div>
-            <LabelWithTooltip label="TELEPHONE NUMBER (OPTIONAL)" />
+            <Label className="inline-flex mb-1.5">TELEPHONE NUMBER (OPTIONAL)</Label>
             <Input type="tel" placeholder="e.g. 035 796 3174" />
           </div>
         </div>
@@ -207,7 +160,7 @@ const CompanyDetails = ({ onNext, onBack }) => {
 
         <div className="flex items-center gap-2.5 my-5">
           <Image src={infoIcon} width={16} height={16} alt="info icon" />
-          <p className="font-bspro text-sm md:text-base leading-normal text-primary-light">
+          <p className="font-bspro text-sm md:text-base leading-normal text-gray-medium">
            We'll send your merchant statements to your company's email. You can
             also view them online.
           </p>
@@ -216,87 +169,69 @@ const CompanyDetails = ({ onNext, onBack }) => {
 
       {/* Trading Address Section */}
       <div className="p-4">
-        <h3 className="font-bspro text-xl font-medium text-gray-600 mb-5 sm:mb-6 md:mb-8">
+        <h3 className="text-lg md:text-xl font-medium text-gray-medium mb-5 sm:mb-6 md:mb-8">
           Trading Address
         </h3>
 
         <div className="mb-5">
-          <LabelWithTooltip label="Select or edit your company’s address below" className="mb-3" />
-          <div className="flex gap-6 flex-wrap">
-            <CustomRadio
-              id="same-address"
-              name="trading-address"
-              value="same"
-              label="Same as residential address"
-              checked={true}
-              onChange={() => {}}
-            />
-            <CustomRadio
-              id="different-address"
-              name="trading-address"
-              value="different"
-              label="Different address"
-              checked={false}
-              onChange={() => {}}
-            />
-          </div>
+          <Label className="block mb-3">Select or edit your company's address below</Label>
+          <RadioGroup defaultValue="comfortable" className="flex mt-2.5 gap-5">
+            <div className="flex items-center gap-3">
+              <RadioGroupItem value="default" id="r1" />
+              <Label htmlFor="r1" className="text-sm">Same as residential address</Label>
+            </div>
+            <div className="flex items-center gap-3">
+              <RadioGroupItem value="comfortable" id="r2" />
+              <Label htmlFor="r2" className="text-sm">Different address</Label>
+            </div>
+          </RadioGroup>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-12">
           <div>
-            <LabelWithTooltip label="STREET NUMBER AND NAME" />
+            <Label className="inline-flex mb-1.5">STREET NUMBER AND NAME</Label>
             <Input placeholder="e.g 134 Raglan street" />
           </div>
 
           <div>
-            <LabelWithTooltip label="UNIT NUMBER (OPTIONAL)" />
+            <Label className="inline-flex mb-1.5">UNIT NUMBER (OPTIONAL)</Label>
             <Input placeholder="e.g 12" />
           </div>
 
           <div>
-            <LabelWithTooltip label="COMPLEX/BUILDING NAME (OPTIONAL)" />
+            <Label className="inline-flex mb-1.5">COMPLEX/BUILDING NAME (OPTIONAL)</Label>
             <Input placeholder="e.g. Eye of Africa Estate" />
           </div>
 
           <div>
-            <LabelWithTooltip label="SUBURB" />
+            <Label className="inline-flex mb-1.5">SUBURB</Label>
             <Input placeholder="e.g Sandton" />
           </div>
 
           <div>
-            <LabelWithTooltip label="CITY/TOWN" />
-            <Select value={city} onValueChange={setCity}>
-              <SelectTrigger>
-                <SelectValue placeholder="Please select" />
-              </SelectTrigger>
-              <SelectContent className="bg-white text-slate-600">
-                {cityOptions.map((opt) => (
-                  <SelectItem key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <Label className="inline-flex mb-1.5">CITY/TOWN</Label>
+            <CustomReactSelect
+              instanceId="company-trading-city"
+              value={cityOptions.find((opt) => opt.value === city)}
+              onChange={(selectedOption) => setCity(selectedOption?.value || "")}
+              options={cityOptions}
+              placeholder="Please select"
+            />
           </div>
 
           <div>
-            <LabelWithTooltip label="PROVINCE" />
-            <Select value={province} onValueChange={setProvince}>
-              <SelectTrigger>
-                <SelectValue placeholder="Please select" />
-              </SelectTrigger>
-              <SelectContent className="bg-white text-slate-600">
-                {provinceOptions.map((opt) => (
-                  <SelectItem key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <Label className="inline-flex mb-1.5">PROVINCE</Label>
+            <CustomReactSelect
+              instanceId="company-trading-province"
+              value={provinceOptions.find((opt) => opt.value === province)}
+              onChange={(selectedOption) => setProvince(selectedOption?.value || "")}
+              options={provinceOptions}
+              placeholder="Please select"
+            />
           </div>
 
           <div>
-            <LabelWithTooltip label="POSTAL CODE" />
+            <Label className="inline-flex mb-1.5">POSTAL CODE</Label>
             <Input placeholder="e.g 2091" />
           </div>
         </div>
@@ -304,8 +239,8 @@ const CompanyDetails = ({ onNext, onBack }) => {
 
       {/* Footer Buttons */}
       <div className="flex justify-between mt-6 bg-slate-50 px-4 py-2 rounded-b-xl">
-        <Button variant="outline" size="sm" className="border-0 bg-transparent text-primary uppercase hover:bg-blue-100" onClick={onBack}>BACK</Button>
-        <Button variant="outline" size="sm" className="border-0 bg-transparent text-primary uppercase hover:bg-blue-100" onClick={onNext}>NEXT</Button>
+        <Button variant="ghost" size="sm" className="text-primary hover:text-primary hover:bg-primary/10" onClick={onBack}>BACK</Button>
+        <Button variant="ghost" size="sm" className="text-primary hover:text-primary hover:bg-primary/10" onClick={onNext}>NEXT</Button>
       </div>
 
     </div>

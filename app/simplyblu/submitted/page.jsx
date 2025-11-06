@@ -13,10 +13,10 @@ import masterCard from "@/public/img/mastercard.svg";
 import unionPay from "@/public/img/unionpay.svg";
 import dinersClub from "@/public/img/diners-pay.svg";
 import Link from "next/link";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 
-const numClass = "text-3xl sm:text-4xl lg:text-[42px] text-secondary";
-const numDescClass = "text-xs text-gray-500 uppercase leading-tight";
+const numClass = "text-3xl sm:text-4xl lg:text-[42px] text-gray-medium";
+const numDescClass = "text-xs text-gray-light uppercase leading-tight";
 
 const page = () => {
   return (
@@ -29,13 +29,13 @@ const page = () => {
           alt="success"
           className="mb-4 sm:mb-6 md:mb-8 xl:mb-12 mx-auto"
         />
-        <h1 className="font-bspro text-xl sm:text-2xl md:text-3xl text-secondary mb-4 text-center">
+        <h1 className="font-bspro text-xl sm:text-2xl md:text-3xl text-gray-medium mb-4 text-center">
           Application submitted
         </h1>
         <div className="flex flex-col sm:flex-row justify-center items-center gap-2 mb-2">
           <div className="flex items-center gap-2">
             <Image src={infoIcon} width={16} height={16} alt="info" />
-            <p className="text-sm sm:text-base lg:text-xl font-normal text-secondary">
+            <p className="text-sm sm:text-base lg:text-xl font-normal text-gray-medium">
               Please log in to complete setting up the product
             </p>
           </div>
@@ -43,7 +43,7 @@ const page = () => {
         <div className="flex flex-col sm:flex-row justify-center items-center gap-2 mb-8">
           <div className="flex items-center gap-2">
             <Image src={infoIcon} width={16} height={16} alt="info" />
-            <p className="text-sm sm:text-base lg:text-xl font-normal text-secondary">
+            <p className="text-sm sm:text-base lg:text-xl font-normal text-gray-medium">
               Your delivery will be processed after 48 hours
             </p>
           </div>
@@ -87,13 +87,13 @@ const page = () => {
 
           {/* Download app section */}
           <div className="rounded-xl overflow-hidden shadow-xl w-full lg:w-2/3">
-            <div className="font-bspro text-xl sm:text-2xl lg:text-[28px] leading-normal text-white px-4 sm:px-6 lg:px-8 py-3 lg:py-4 bg-slate-500">
+            <div className="font-bspro text-xl sm:text-2xl lg:text-[28px] leading-normal text-white px-4 sm:px-6 lg:px-8 py-3 lg:py-4 bg-gray-light">
               Download the SimplyBLU Merchant App
             </div>
             <div className="py-4 sm:py-6 px-4 sm:px-6 lg:px-8 bg-slate-100 h-full">
-              <p className="font-bspro text-xs sm:text-sm font-normal text-gray-500 mb-4">
+              <p className="font-bspro text-xs sm:text-sm font-normal text-gray-light mb-4">
                 Your merchant number is{" "}
-                <span className="font-bspro text-sm sm:text-base font-bold text-gray-850">
+                <span className="font-bspro text-sm sm:text-base font-bold text-gray-medium">
                   2738920184
                 </span>{" "}
                 and will be sent to you by email. You can now use it to access
@@ -121,10 +121,10 @@ const page = () => {
                 </Link>
               </div>
 
-              <p className="font-bspro text-xs sm:text-sm font-medium text-gray-500 mb-2">
+              <p className="font-bspro text-xs sm:text-sm font-medium text-gray-light mb-2">
                 Your card machine also accepts American Express and RCS.
               </p>
-              <p className="font-bspro text-xs sm:text-sm text-gray-500 mb-4 sm:mb-5">
+              <p className="font-bspro text-xs sm:text-sm text-gray-light mb-4 sm:mb-5">
                 To set this up, contact these providers.
               </p>
 
@@ -138,10 +138,10 @@ const page = () => {
                     className="w-8 sm:w-10 h-auto"
                   />
                   <div>
-                    <p className="font-bspro text-xs text-secondary">
+                    <p className="font-bspro text-xs text-gray-medium">
                       080 016 0992
                     </p>
-                    <span className="font-bspro text-[9px] text-secondary block">
+                    <span className="font-bspro text-[9px] text-gray-medium block">
                       Customer service
                     </span>
                   </div>
@@ -155,17 +155,17 @@ const page = () => {
                     className="w-8 sm:w-10 h-auto"
                   />
                   <div>
-                    <p className="font-bspro text-xs text-secondary">
+                    <p className="font-bspro text-xs text-gray-medium">
                       0861 729 727
                     </p>
-                    <span className="font-bspro text-[9px] text-secondary block">
+                    <span className="font-bspro text-[9px] text-gray-medium block">
                       Customer service
                     </span>
                   </div>
                 </div>
               </div>
 
-              <p className="font-bspro text-xs sm:text-sm font-medium text-gray-500 mb-3">
+              <p className="font-bspro text-xs sm:text-sm font-medium text-gray-light mb-3">
                 Your card machine can accept the following card types:
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
@@ -203,7 +203,7 @@ const page = () => {
         </div>
         <Button
           variant="default"
-          className="text-white uppercase w-full max-w-[300px] sm:h-[50px] block mx-auto"
+          className="uppercase w-full max-w-[300px] sm:h-[50px] block mx-auto h-10 md:h-12"
         >
           Sign in to business banking
         </Button>

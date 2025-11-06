@@ -56,10 +56,10 @@ const Page = () => {
 
   return (
     <div className="w-full max-w-7xl mx-auto py-10 px-3">
-      <h1 className="text-2xl sm:text-3xl lg:text-[32px] font-normal text-secondary leading-tight mb-3.5">
+      <h1 className="text-2xl sm:text-3xl lg:text-[32px] font-normal text-gray-medium leading-tight mb-3.5">
         SimplyBlue Application
       </h1>
-      <p className="text-base sm:text-lg md:text-xl lg:text-xl font-normal text-secondary leading-normal mb-12 md:mb-14">
+      <p className="text-base sm:text-lg md:text-xl lg:text-xl font-normal text-gray-medium leading-normal mb-12 md:mb-14">
         Please provide us with details to begin the application process. We’ll
         use this information to verify your business
       </p>
