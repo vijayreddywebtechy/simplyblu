@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Eye, EyeOff } from 'lucide-react';
 import Image from 'next/image';
 import sbShield from "@/public/img/sb-shield.png"
+import { Button } from '@/components/ui/button';
 
 
 export default function SignUpForm() {
