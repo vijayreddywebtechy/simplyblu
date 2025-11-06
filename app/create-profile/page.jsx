@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Eye, EyeOff } from 'lucide-react';
 import Image from 'next/image';
@@ -44,10 +44,10 @@ export default function SignUpForm() {
         {/* Form Card */}
         <div className="bg-white rounded-lg sm:rounded-xl shadow-2xl p-5 sm:p-6 md:p-8 lg:p-10">
           <div className="text-center mb-6 sm:mb-7 md:mb-8">
-            <h1 className="text-xl sm:text-2xl md:text-3xl text-gray-600 mb-3 sm:mb-4 md:mb-5 font-medium">
+            <h1 className="text-xl sm:text-2xl md:text-3xl text-gray-medium mb-3 sm:mb-4 md:mb-5 font-medium">
               Create Your Profile
             </h1>
-            <p className="text-xs sm:text-sm md:text-base text-gray-600 px-2">
+            <p className="text-xs sm:text-sm md:text-base text-gray-light px-2">
               Create a username & password you'll remember
             </p>
           </div>
@@ -60,7 +60,7 @@ export default function SignUpForm() {
                 type="text"
                 value={formData.preferredName}
                 onChange={(e) => setFormData({ ...formData, preferredName: e.target.value })}
-                className="w-full h-10 sm:h-11 text-base border-0 border-b rounded-none px-0 focus-visible:ring-0 focus-visible:border-blue-600 placeholder:text-sm sm:placeholder:text-base md:placeholder:text-lg"
+                className="border-0 border-b border-gray-light rounded-none px-0 focus-visible:ring-0 focus-visible:border-primary"
                 placeholder="Preferred Name"
               />
             </div>
@@ -72,7 +72,7 @@ export default function SignUpForm() {
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full h-10 sm:h-11 text-base border-0 border-b rounded-none px-0 focus-visible:ring-0 focus-visible:border-blue-600 placeholder:text-sm sm:placeholder:text-base md:placeholder:text-lg"
+                className="border-0 border-b border-gray-light rounded-none px-0 focus-visible:ring-0 focus-visible:border-primary"
                 placeholder="Email Address"
               />
               <p className="text-[11px] sm:text-xs md:text-sm text-gray-500 leading-snug">
@@ -87,7 +87,7 @@ export default function SignUpForm() {
                 type="text"
                 value={formData.username}
                 onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-                className="w-full h-10 sm:h-11 text-base border-0 border-b rounded-none px-0 focus-visible:ring-0 focus-visible:border-blue-600 placeholder:text-sm sm:placeholder:text-base md:placeholder:text-lg"
+                className="border-0 border-b border-gray-light rounded-none px-0 focus-visible:ring-0 focus-visible:border-primary"
                 placeholder="Username"
               />
             </div>
@@ -100,7 +100,7 @@ export default function SignUpForm() {
                   type={showPassword ? 'text' : 'password'}
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  className="w-full h-10 sm:h-11 text-base pr-16 sm:pr-20 border-0 border-b rounded-none px-0 focus-visible:ring-0 focus-visible:border-blue-600 placeholder:text-sm sm:placeholder:text-base md:placeholder:text-lg"
+                  className="border-0 border-b border-gray-light rounded-none px-0 focus-visible:ring-0 focus-visible:border-primary"
                   placeholder="Create Password"
                 />
                 <button
@@ -116,8 +116,8 @@ export default function SignUpForm() {
                   ) : (
                     <span className="flex items-center gap-0.5 sm:gap-1">
                       <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 sm:hidden" />
-                      <span className="hidden xs:inline">SHOW</span>
-                      <span className="xs:hidden">SHOW</span>
+                      <span className="hidden xs:inline text-sm">SHOW</span>
+                      <span className="xs:hidden text-sm">SHOW</span>
                     </span>
                   )}
                 </button>
@@ -132,7 +132,7 @@ export default function SignUpForm() {
                   type={showConfirmPassword ? 'text' : 'password'}
                   value={formData.confirmPassword}
                   onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                  className="w-full h-10 sm:h-11 text-base pr-16 sm:pr-20 border-0 border-b rounded-none px-0 focus-visible:ring-0 focus-visible:border-blue-600 placeholder:text-sm sm:placeholder:text-base md:placeholder:text-lg"
+                  className="border-0 border-b border-gray-light rounded-none px-0 focus-visible:ring-0 focus-visible:border-primary"
                   placeholder="Confirm Password"
                 />
                 <button
@@ -148,8 +148,8 @@ export default function SignUpForm() {
                   ) : (
                     <span className="flex items-center gap-0.5 sm:gap-1">
                       <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 sm:hidden" />
-                      <span className="hidden xs:inline">SHOW</span>
-                      <span className="xs:hidden">SHOW</span>
+                      <span className="hidden xs:inline text-sm">SHOW</span>
+                      <span className="xs:hidden text-sm">SHOW</span>
                     </span>
                   )}
                 </button>
@@ -160,14 +160,14 @@ export default function SignUpForm() {
             <div className="space-y-3 pt-2 sm:pt-3 md:pt-4">
               <Button
                 onClick={handleSubmit}
-                className="w-full sm:h-[50px] text-sm sm:text-base text-white uppercase"
+                className="w-full h-10 md:h-12 uppercase"
               >
                 NEXT
               </Button>
               <Button
                 variant="ghost"
                 onClick={handleCancel}
-                className="w-full sm:h-[50px] text-sm sm:text-base text-primary uppercase hover:text-blue-700 hover:bg-blue-50 "
+                className="w-full h-10 md:h-12 text-primary uppercase hover:text-primary hover:bg-primary/10"
               >
                 CANCEL
               </Button>

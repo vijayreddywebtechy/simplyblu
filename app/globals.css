@@ -2,42 +2,160 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ---------- Root Theme Variables ---------- */
-:root {
-  /* Colors */
-  --color-background: #ffffff;
-  --color-foreground: #171717;
-
-  /* --color-primary: #0062e1;
-  --color-primary-light: #3889ff;
-  --color-primary-medium: #0241bd;
-  --color-primary-dark: #0033a1;
-  --color-secondary: #1a314d; */
-}
-
-/* ---------- Dark Mode Support ---------- */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: #0a0a0a;
-    --color-foreground: #ffffff;
-  }
-}
-
-/* ---------- Global Styles ---------- */
+/* ===== Reset & Global Styles ===== */
+html,
 body {
-  background-color: var(--color-background);
-  color: var(--color-foreground);
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: var(--font-bspro), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ---------- Utility Classes ---------- */
-.pointer {
-  cursor: pointer !important;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-/* Example (optional) - Tailwind can do this too:
-button {
-  @apply cursor-pointer;
+a {
+  color: inherit;
+  text-decoration: none;
 }
-*/
+
+/* ===== Global Variables ===== */
+:root {
+  --select-min-height: 3rem;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --select-min-height: 40px;
+  }
+}
+
+/* ===== Theme Variables (Light Mode) ===== */
+@layer base {
+  :root {
+    /* Base Colors */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 9%;
+
+    /* Primary Colors - Blue Scale */
+    --primary: 212 100% 44%;           /* #0062e1 */
+    --primary-medium: 225 100% 40%;    /* #003fca */
+    --primary-dark: 225 100% 33%;      /* #0033aa */
+    --primary-foreground: 0 0% 98%;
+
+    /* Secondary Colors - Navy */
+    --secondary: 210 48% 20%;          /* #1a314d */
+    --secondary-foreground: 0 0% 100%;
+
+    /* Gray Shades */
+    --gray-light: 210 16% 44%;         /* #5c6c80 */
+    --gray-medium: 210 48% 20%;        /* #1a314d */
+    --gray-dark: 210 73% 3%;           /* #02070d */
+
+    /* Accent & Utility Colors */
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 9%;
+
+    --border: 214 15% 91%;             /* #e3e6ea */
+    --input: 210 16% 44%;              /* #5c6c80 */
+    --ring: 212 100% 44%;              /* matches primary */
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --radius: 0.5rem;
+  }
+
+  /* ===== Dark Mode ===== */
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 212 100% 60%;
+    --primary-medium: 225 100% 60%;
+    --primary-dark: 225 100% 40%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 215 28% 17%;
+    --secondary-foreground: 0 0% 98%;
+
+    --gray-light: 210 16% 60%;
+    --gray-medium: 215 28% 17%;
+    --gray-dark: 210 73% 8%;
+
+    --muted: 215 28% 17%;
+    --muted-foreground: 0 0% 64%;
+
+    --accent: 215 28% 17%;
+    --accent-foreground: 0 0% 98%;
+
+    --border: 215 28% 17%;
+    --input: 215 28% 17%;
+    --ring: 212 100% 60%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 100%;
+  }
+
+  /* Base Layer Defaults */
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ===== Custom Utilities ===== */
+@layer utilities {
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ===== Custom Containers ===== */
+.custom-container {
+  max-width: 1440px;
+  padding-left: 36px;
+  padding-right: 36px;
+  margin: 0 auto;
+}
+
+.content-container {
+  max-width: 1328px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin: 0 auto;
+}
+@media screen and (max-width: 768px) {
+  .custom-container, .content-container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}

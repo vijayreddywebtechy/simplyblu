@@ -11,19 +11,53 @@ module.exports = {
   	extend: {
   		colors: {
   			primary: {
-          DEFAULT: '#0062e1',
-          light: '#3889ff',
-          medium: '#0241bd',
-          dark: '#0033a1',
+          DEFAULT: 'hsl(var(--primary))',
+          medium: 'hsl(var(--primary-medium))',
+          dark: 'hsl(var(--primary-dark))',
+          foreground: 'hsl(var(--primary-foreground))',
   			},
   			secondary: {
-  				DEFAULT: '#1a314d',
+  				DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
   			},
-        background: '#ffffff',
-        foreground: '#171717',
+        gray: {
+          light: 'hsl(var(--gray-light))',
+          medium: 'hsl(var(--gray-medium))',
+          dark: 'hsl(var(--gray-dark))',
+        },
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
+        },
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
   		},
       fontFamily: {
         bspro: ['var(--font-bspro)', 'system-ui', '-apple-system', 'sans-serif']
+      },
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
       }
   	}
   },

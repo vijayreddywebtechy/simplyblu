@@ -12,23 +12,23 @@ export function VerticalStepper({ steps, activeStep, onStepClick, className = ""
         const isLast = index === steps.length - 1;
 
         const circleClass = `
-          relative flex h-6 w-6 md:h-8 md:w-8 items-center justify-center rounded-full border-2 transition-all text-gray-700
-          ${isCompleted ? "border-blue-600 bg-blue-600 text-white hover:bg-blue-700" : ""}
-          ${isActive ? "border-blue-600 bg-blue-600 text-white shadow-lg" : ""}
-          ${!isActive && !isCompleted ? "border-gray-300 bg-gray-300 text-gray-600" : ""}
+          relative flex h-6 w-6 md:h-8 md:w-8 items-center justify-center rounded-full border-2 transition-all
+          ${isCompleted ? "border-primary bg-primary text-primary-foreground hover:bg-primary/90" : ""}
+          ${isActive ? "border-primary bg-primary text-primary-foreground shadow-lg" : ""}
+          ${!isActive && !isCompleted ? "border-border bg-muted text-muted-foreground" : ""}
           ${onStepClick ? "cursor-pointer hover:shadow-md" : "cursor-default"}
         `;
 
         const labelClass = `
           transition-colors font-bspro text-base font-medium leading-normal mt-[2px] md:mt-1.5
           ${isActive ? "text-primary" : ""}
-          ${isCompleted ? "text-gray-700" : ""}
-          ${!isActive && !isCompleted ? "text-gray-500" : ""}
+          ${isCompleted ? "text-gray-dark" : ""}
+          ${!isActive && !isCompleted ? "text-gray-light" : ""}
         `;
 
         const descClass = `
           transition-colors font-bspro text-sm md:text-base font-normal leading-normal mt-1
-          ${isActive ? "text-gray-700" : "text-gray-500"}
+          ${isActive ? "text-gray-medium" : "text-gray-light"}
         `;
 
         return (
@@ -51,7 +51,7 @@ export function VerticalStepper({ steps, activeStep, onStepClick, className = ""
               {!isLast && (
                 <div
                   className={`w-[1px] flex-1 min-h-[60px] transition-colors ${
-                    isCompleted ? "bg-blue-600" : "bg-gray-300"
+                    isCompleted ? "bg-primary" : "bg-border"
                   }`}
                 />
               )}
