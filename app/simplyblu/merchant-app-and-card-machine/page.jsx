@@ -42,7 +42,28 @@ const page = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-9">
           {/* Merchant App Card */}
           <div className="border border-gray-200 rounded-2xl overflow-hidden flex flex-col">
-            <div className="h-12 sm:h-14 bg-gradient-to-tr from-[#0033A1] to-[#1F59D8]"></div>
+                        <div className="h-12 sm:h-14 bg-gradient-to-tr from-[#0033A1] to-[#1F59D8] relative">
+              {/* Orange badge with angled edge */}
+              <div className="absolute left-0 top-0 h-full flex">
+                <div className="relative bg-gradient-to-r from-orange-600 to-orange-300 h-6 px-4 flex items-center shadow-md">
+                  <span className="text-white font-medium text-xs tracking-wider uppercase whitespace-nowrap">
+                    Includes Installation
+                  </span>
+                  {/* Angled cut on the right side - larger and more pronounced */}
+                  <div
+                    className="absolute top-0 h-full"
+                    style={{
+                      left: "100%",
+                      width: 0,
+                      height: 0,
+                      borderTop: "0 solid transparent",
+                      borderBottom: "24px solid transparent",
+                      borderLeft: "28px solid #fdb874",
+                    }}
+                  ></div>
+                </div>
+              </div>
+            </div>
 
             <div className="bg-primary-dark p-4 text-center flex-1 flex flex-col items-center justify-center md:min-h-[400px]">
               <Image
@@ -62,41 +83,34 @@ const page = () => {
             </div>
 
             <div className="p-5 sm:p-7">
-              <h3 className="text-2xl sm:text-3xl font-medium text-gray-medium text-center">
-                Merchant App
+              <h3 className="text-2xl sm:text-3xl font-medium text-gray-medium">
+                SimplyBLU Pro
               </h3>
             </div>
 
-            <div className="p-5 sm:p-7 bg-slate-200 rounded-xl flex-1 flex flex-col">
-              <p className="text-sm sm:text-base text-gray-dark leading-normal mb-4 sm:mb-6">
-                Download the SimplyBLU merchant app and register using the
-                merchant number provided at the end of your application.
-                Transaction fees apply every time you use the app.
-              </p>
-              <h4 className="text-lg sm:text-xl text-gray-medium mb-4">
-                Benefits
-              </h4>
-              <ul className="space-y-2 sm:space-y-3">
-                {[
-                  "Add products instantly and start selling",
-                  "Gain real-time insights to understand your customers needs",
-                  "Make quick sales at lightning speed!",
-                  "Manage stock, process refunds and more!",
-                ].map((text, idx) => (
-                  <li key={idx} className="flex items-start gap-2 sm:gap-3">
-                    <Image
-                      src={iconTick}
-                      width={20}
-                      height={20}
-                      className="h-5 w-5 sm:h-6 sm:w-6"
-                      alt="tick"
-                    />
-                    <p className="text-sm sm:text-base text-gray-light leading-normal m-0">
-                      {text}
-                    </p>
-                  </li>
-                ))}
-              </ul>
+            <div className="p-5 sm:p-7 bg-slate-100 flex-1 flex flex-col justify-between">
+              <div className="mb-3 sm:mb-4">
+                <h6 className={numClass}>1</h6>
+                <span className={numDescClass}>
+                  Number of Card <br /> Machine(S)
+                </span>
+              </div>
+              <div className="mb-3 sm:mb-4">
+                <h6 className={numClass}>
+                  <sup className="text-lg sm:text-xl -top-3">R</sup> 1999
+                </h6>
+                <span className={numDescClass}>
+                  once off purchase fee  <br />per card machine (excl. vat)
+                </span>
+              </div>
+              <div>
+                <h6 className={numClass}>
+                  <sup className="text-lg sm:text-xl -top-3">R</sup> 40
+                </h6>
+                <span className={numDescClass}>
+                  monthly Connectivity Fee <br />Per card Machine(S) (excl. vat)
+                </span>
+              </div>
             </div>
           </div>
 
@@ -136,12 +150,12 @@ const page = () => {
             </div>
 
             <div className="p-5 sm:p-7">
-              <h3 className="text-2xl sm:text-3xl font-medium text-gray-medium text-center">
-                Card Machine
+              <h3 className="text-2xl sm:text-3xl font-medium text-gray-medium">
+                SimplyBLU Pocket
               </h3>
             </div>
 
-            <div className="p-5 sm:p-7 bg-slate-200 rounded-xl flex-1 flex flex-col justify-between">
+            <div className="p-5 sm:p-7 bg-slate-100 flex-1 flex flex-col justify-between">
               <div className="mb-3 sm:mb-4">
                 <h6 className={numClass}>1</h6>
                 <span className={numDescClass}>
@@ -150,22 +164,51 @@ const page = () => {
               </div>
               <div className="mb-3 sm:mb-4">
                 <h6 className={numClass}>
-                  <sup className="text-lg sm:text-xl -top-3">R</sup> 380
+                  <sup className="text-lg sm:text-xl -top-3">R</sup> 1299
                 </h6>
                 <span className={numDescClass}>
-                  monthly rental fee <br /> per device (excl VAT)
+                  once off purchase fee  <br /> per card machine (excl. vat)
                 </span>
               </div>
               <div>
                 <h6 className={numClass}>
-                  <sup className="text-lg sm:text-xl -top-3">R</sup> 0
+                  <sup className="text-lg sm:text-xl -top-3">R</sup> 40
                 </h6>
                 <span className={numDescClass}>
-                  monthly Connectivity <br /> Fee Per card Machine(S)
+                  monthly Connectivity <br /> Fee Per card Machine(S) (excl. vat)
                 </span>
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="bg-white border border-100 mt-8 rounded-xl p-6">
+            <div className="flex flex-col md:flex-row items-start gap-5 md:gap-10">
+              <Image src={merchantApp} width={102} height={205} alt="merchant app" />
+              <div className="flex-1 max-w-2xl">
+                  <h3 className="text-2xl sm:text-3xl font-medium text-gray-medium mb-4">
+                    Free
+                  </h3>
+                  <h4 className="text-lg md:text-xl text-gray-medium mb-3">Merchant App</h4>
+                  <p className="text-sm md:text-base text-gray-medium mb-4">Download the SimplyBLU merchant app and register using the merchant number provided at the end of your application. Transaction fees apply with every time you use the app. </p>
+                  <h4 className="text-lg md:text-xl text-gray-medium mb-3">Benefits</h4>
+                  <ul className="space-y-5">
+                    <li className="flex items-start gap-2">
+                      <Image src={iconTick} width={20} height={20} alt="tick" className="mt-0.5 flex-shrink-0" />
+                      <span className="text-sm text-gray-light">Gain real-time insights to understand your customers needs</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Image src={iconTick} width={20} height={20} alt="tick" className="mt-0.5 flex-shrink-0" />
+                      <span className="text-sm text-gray-light">Add products instantly and start selling</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Image src={iconTick} width={20} height={20} alt="tick" className="mt-0.5 flex-shrink-0" />
+                      <span className="text-sm text-gray-light">Make quick sales at lightning speed Manage stock, process refund and more</span>
+                    </li>
+                  </ul>
+              </div>
+              
+            </div>
         </div>
 
         <div className="flex flex-wrap gap-3 mt-12 items-center justify-center">

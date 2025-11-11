@@ -34,7 +34,7 @@ const DeliveryDetails = ({ onNext, onBack }) => {
         {/* Delivery Address Selection */}
         <div>
           <Label className="block mb-3">Where would you like your device(s) to be delivered?</Label>
-          <RadioGroup defaultValue="comfortable" className="flex mt-2.5 gap-5">
+          <RadioGroup defaultValue="comfortable" className="flex flex-col md:flex-row mt-2.5 gap-5">
             <div className="flex items-center gap-3">
               <RadioGroupItem value="default" id="r1" />
               <Label htmlFor="r1" className="text-sm">Company trading address</Label>
