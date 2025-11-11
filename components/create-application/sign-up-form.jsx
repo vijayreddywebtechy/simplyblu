@@ -10,8 +10,10 @@ import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import RHFProvider from "../common/react-hook-form-provider";
+import { useRouter } from "next/navigation";
 
 export default function SignUpForm() {
+  const router = useRouter();
   const methods = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
@@ -22,6 +24,7 @@ export default function SignUpForm() {
 
   const handleSubmit = (data) => {
     console.log("Form submitted:", data);
+    router.push("/simplyblu/application");
     // TODO: Store it in local
   };
 
