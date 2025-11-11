@@ -10,7 +10,7 @@ const selectSuits = () => {
   const router = useRouter();
 
   const handleRegister = () => {
-    router.push("/simplyblu/application");
+    router.push("/create-profile");
   };
 
   return (
@@ -79,7 +79,7 @@ const selectSuits = () => {
 
                 <Button
                   className="mt-auto mb-4 sm:h-[50px] text-white uppercase"
-                  onClick={() => handleRegister()}
+                  onClick={handleRegister}
                 >
                   REGISTER
                 </Button>
