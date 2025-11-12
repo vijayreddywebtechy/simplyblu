@@ -5,7 +5,7 @@ import { useForm, FormProvider } from "react-hook-form";
 
 const RHFProvider = ({
   children,
-  submitFn,
+  submitFn = () => {},
   resolver,
   defaultValues = {},
   mode = "onChange",
