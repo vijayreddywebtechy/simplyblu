@@ -5,7 +5,8 @@ import CustomReactSelect from "@/components/ui/CustomReactSelect";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import infoIcon from "@/public/icons/icn_info.svg";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { RadioGroup } from "@/components/ui/radio-group";
+import { yesNoOptions } from "@/utils/dropdownOptions";
 
 const PersonalDetailsFields = ({ options, handleNext }) => {
   return (

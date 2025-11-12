@@ -6,6 +6,7 @@ import Image from "next/image";
 import infoIcon from "@/public/icons/icn_info.svg";
 import { Button } from "@/components/ui/button";
 import { RadioGroup } from "@/components/ui/radio-group";
+import Tooltip from "@/components/common/tooltip";
 
 const CompanyDetailsFields = ({ handleNext, handlePrev }) => {
   // Dropdown options
@@ -103,7 +104,10 @@ const CompanyDetailsFields = ({ handleNext, handlePrev }) => {
 
           {/* NATURE OF BUSINESS */}
           <div>
-            <Label className="inline-flex mb-1.5">NATURE OF BUSINESS</Label>
+            <Label className="flex gap-1 items-center mb-1.5">
+              NATURE OF BUSINESS{" "}
+              <Tooltip text="Describe what your business primarily does" />
+            </Label>
             <CustomReactSelect
               instanceId="company-nature"
               name="businessNature"
@@ -114,7 +118,10 @@ const CompanyDetailsFields = ({ handleNext, handlePrev }) => {
 
           {/* BUSINESS INDUSTRY */}
           <div>
-            <Label className="inline-flex mb-1.5">BUSINESS INDUSTRY</Label>
+            <Label className="flex gap-1 items-center mb-1.5">
+              BUSINESS INDUSTRY
+              <Tooltip text="Describe what your business primarily does" />
+            </Label>
             <CustomReactSelect
               instanceId="company-industry"
               name="businessIndustry"

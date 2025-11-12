@@ -24,7 +24,7 @@ const PersonalDetails = ({ onNext }) => {
         submitFn={handleNext}
         resolver={yupResolver(personalDetailsSchema)}
       >
-        <PersonalDetailsFields options={options} />
+        <PersonalDetailsFields options={options} handleNext={handleNext} />
       </RHFProvider>
     </div>
   );
