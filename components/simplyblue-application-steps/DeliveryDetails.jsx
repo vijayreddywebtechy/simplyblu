@@ -17,7 +17,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import CustomReactSelect from "@/components/ui/CustomReactSelect";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { RadioGroup } from "@/components/ui/radio-group";
 
 const DeliveryDetails = ({ onNext, onBack }) => {
   const [fromDate, setFromDate] = useState()

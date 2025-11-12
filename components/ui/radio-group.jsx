@@ -7,7 +7,7 @@ import { Controller, useFormContext } from "react-hook-form";
 import { cn } from "@/lib/utils";
 
 const RadioGroup = React.forwardRef(
-  ({ className, name, defaultValue = "", children, ...props }, ref) => {
+  ({ name, options = [], className, defaultValue = "", ...props }, ref) => {
     const { control } = useFormContext();
 
     if (!control) {
@@ -23,12 +23,30 @@ const RadioGroup = React.forwardRef(
           <div>
             <RadioGroupPrimitive.Root
               ref={ref}
-              className={cn("grid gap-2", className)}
+              className={cn("flex gap-5 mt-2.5", className)}
               value={field.value}
               onValueChange={field.onChange}
               {...props}
             >
-              {children}
+              {options.map((opt) => (
+                <div key={opt.value} className="flex items-center gap-3">
+                  <RadioGroupPrimitive.Item
+                    value={opt.value}
+                    id={`${name}-${opt.value}`}
+                    className="aspect-square h-5 w-5 rounded-full border border-gray-light text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
+                      <Circle className="h-4 w-4 fill-current text-current" />
+                    </RadioGroupPrimitive.Indicator>
+                  </RadioGroupPrimitive.Item>
+                  <label
+                    htmlFor={`${name}-${opt.value}`}
+                    className="text-sm cursor-pointer"
+                  >
+                    {opt.label}
+                  </label>
+                </div>
+              ))}
             </RadioGroupPrimitive.Root>
 
             {error && (
@@ -40,22 +58,7 @@ const RadioGroup = React.forwardRef(
     );
   }
 );
+
 RadioGroup.displayName = "RadioGroup";
 
-const RadioGroupItem = React.forwardRef(({ className, ...props }, ref) => (
-  <RadioGroupPrimitive.Item
-    ref={ref}
-    className={cn(
-      "aspect-square h-5 w-5 rounded-full border border-gray-light text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
-      className
-    )}
-    {...props}
-  >
-    <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
-      <Circle className="h-4 w-4 fill-current text-current" />
-    </RadioGroupPrimitive.Indicator>
-  </RadioGroupPrimitive.Item>
-));
-RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
-
-export { RadioGroup, RadioGroupItem };
+export { RadioGroup };

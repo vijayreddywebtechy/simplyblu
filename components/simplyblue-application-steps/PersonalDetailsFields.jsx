@@ -7,7 +7,7 @@ import Image from "next/image";
 import infoIcon from "@/public/icons/icn_info.svg";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
-const PersonalDetailsFields = ({ options }) => {
+const PersonalDetailsFields = ({ options, handleNext }) => {
   return (
     <>
       <div className="p-4">
@@ -80,24 +80,7 @@ const PersonalDetailsFields = ({ options }) => {
         <Label className="inline-flex mb-1.5">
           ARE YOU A PUBLIC OFFICIAL IN A POSITION OF AUTHORITY?
         </Label>
-        <RadioGroup
-          name="isPublicOfficial"
-          defaultValue="comfortable"
-          className="flex mt-2.5 gap-5"
-        >
-          <div className="flex items-center gap-3">
-            <RadioGroupItem value="yes" id="r1" />
-            <Label htmlFor="r1" className="text-sm">
-              Yes
-            </Label>
-          </div>
-          <div className="flex items-center gap-3">
-            <RadioGroupItem value="no" id="r2" />
-            <Label htmlFor="r2" className="text-sm">
-              No
-            </Label>
-          </div>
-        </RadioGroup>
+        <RadioGroup name="isPublicOfficial" options={yesNoOptions} />
       </div>
 
       {/* Tax Resident */}
@@ -105,24 +88,7 @@ const PersonalDetailsFields = ({ options }) => {
         <Label className="inline-flex mb-1.5">
           ARE YOU A TAX RESIDENT OUTSIDE OF SOUTH AFRICA?
         </Label>
-        <RadioGroup
-          name="isSouthAfricaResident"
-          defaultValue="comfortable"
-          className="flex mt-2.5 gap-5"
-        >
-          <div className="flex items-center gap-3">
-            <RadioGroupItem value="yes" id="r1" />
-            <Label htmlFor="r1" className="text-sm">
-              Yes
-            </Label>
-          </div>
-          <div className="flex items-center gap-3">
-            <RadioGroupItem value="no" id="r2" />
-            <Label htmlFor="r2" className="text-sm">
-              No
-            </Label>
-          </div>
-        </RadioGroup>
+        <RadioGroup name="isSouthAfricaResident" options={yesNoOptions} />
       </div>
 
       {/* Info note */}
@@ -199,7 +165,8 @@ const PersonalDetailsFields = ({ options }) => {
         <Button
           variant="ghost"
           size="sm"
-          type="submit"
+          // type="submit"
+          onClick={handleNext}
           className="text-primary hover:text-primary hover:bg-primary/10"
         >
           NEXT
