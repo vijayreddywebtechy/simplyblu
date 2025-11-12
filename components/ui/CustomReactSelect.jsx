@@ -3,6 +3,7 @@
 import React from "react";
 import Select, { components as selectComponents } from "react-select";
 import { ChevronDown, Check } from "lucide-react";
+import { Controller, useFormContext } from "react-hook-form";
 
 // Design system color tokens - matches Tailwind CSS variables
 // Note: React Select uses inline styles, so we need actual HSL values, not CSS variables
@@ -34,7 +35,7 @@ const sizing = {
 const customSelectStyles = {
   control: (base, state) => {
     const isFocused = state.isFocused || state.menuIsOpen;
-    
+
     return {
       ...base,
       backgroundColor: "transparent",
@@ -93,7 +94,8 @@ const DropdownIndicator = (props) => {
     <selectComponents.DropdownIndicator {...props}>
       <ChevronDown
         size={22}
-        className="text-primary" strokeWidth={1.8} // custom color
+        className="text-primary"
+        strokeWidth={1.8} // custom color
       />
     </selectComponents.DropdownIndicator>
   );
@@ -118,19 +120,50 @@ const Option = (props) => {
   );
 };
 
-function CustomReactSelect(props) {
-  const { instanceId, ...restProps } = props;
-  
-  return <Select 
-            {...restProps}
-            instanceId={instanceId}
-            styles={customSelectStyles} 
-            components={{ 
-              DropdownIndicator,
-              IndicatorSeparator,
-              Option,
-            }}
-  />;
+function CustomReactSelect({ name, instanceId, ...restProps }) {
+  const { control } = useFormContext();
+  // When used inside React Hook Form
+  if (control && name) {
+    return (
+      <Controller
+        name={name}
+        control={control}
+        render={({ field, fieldState }) => (
+          <div>
+            <Select
+              {...restProps}
+              instanceId={instanceId}
+              value={
+                restProps.options?.find((opt) => opt.value === field.value) ||
+                null
+              }
+              onChange={(selectedOption) =>
+                field.onChange(selectedOption?.value || "")
+              }
+              onBlur={field.onBlur}
+              styles={customSelectStyles}
+              components={{ DropdownIndicator, IndicatorSeparator, Option }}
+            />
+            {fieldState.error && (
+              <p className="text-red-500 text-xs sm:text-sm">
+                {fieldState.error.message}
+              </p>
+            )}
+          </div>
+        )}
+      />
+    );
+  }
+
+  // When used as a standalone select (non-form usage)
+  return (
+    <Select
+      {...restProps}
+      instanceId={instanceId}
+      styles={customSelectStyles}
+      components={{ DropdownIndicator, IndicatorSeparator, Option }}
+    />
+  );
 }
 
 export default CustomReactSelect;
