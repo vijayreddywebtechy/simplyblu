@@ -116,8 +116,8 @@ const ProductSetup = ({ onNext, onBack }) => {
                 <Label htmlFor="terms" className="text-sm">I agree to the terms and conditions</Label>
               </div>
               <div className="flex items-center gap-3">
-                <Checkbox id="terms" />
-                <Label htmlFor="terms" className="text-sm">Merchant app</Label>
+                <Checkbox id="app" />
+                <Label htmlFor="app" className="text-sm">Merchant app</Label>
               </div>
               </div>
             </div>
@@ -227,9 +227,9 @@ const ProductSetup = ({ onNext, onBack }) => {
       </div>
 
       {/* Footer Buttons */}
-      <div className="flex justify-between mt-6 bg-slate-50 px-4 py-2 rounded-b-xl">
-        <Button variant="ghost" size="sm" className="text-primary hover:text-primary hover:bg-primary/10" onClick={onBack}>BACK</Button>
-        <Button variant="ghost" size="sm" className="text-primary hover:text-primary hover:bg-primary/10" onClick={onNext}>NEXT</Button>
+      <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-0 mt-6 bg-slate-50 px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-200">
+        <Button variant="ghost" size="sm" className="text-primary hover:text-primary hover:bg-primary/10 w-full sm:w-auto" onClick={onBack}>BACK</Button>
+        <Button variant="ghost" size="sm" className="text-primary hover:text-primary hover:bg-primary/10 w-full sm:w-auto" onClick={onNext}>NEXT</Button>
       </div>
     </div>
   );

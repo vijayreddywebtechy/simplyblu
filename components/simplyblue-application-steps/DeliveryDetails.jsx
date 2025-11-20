@@ -18,15 +18,22 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import CustomReactSelect from "@/components/ui/CustomReactSelect";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useRouter } from "next/navigation";
+
 
 const DeliveryDetails = ({ onNext, onBack }) => {
+  const router = useRouter();
   const [fromDate, setFromDate] = useState()
   const [deliveryType, setDeliveryType] = useState("");
-
   const deliveryTypeOptions = [
     { value: "standard", label: "Standard Delivery" },
     { value: "express", label: "Express Delivery" }
   ];
+
+  
+  const onHandleNext = () => {
+    router.push("/simplyblu/merchant-app-and-card-machine");
+  };
 
   return (
     <div className="border border-gray-200 rounded-xl">
@@ -34,7 +41,7 @@ const DeliveryDetails = ({ onNext, onBack }) => {
         {/* Delivery Address Selection */}
         <div>
           <Label className="block mb-3">Where would you like your device(s) to be delivered?</Label>
-          <RadioGroup defaultValue="comfortable" className="flex mt-2.5 gap-5">
+          <RadioGroup defaultValue="comfortable" className="flex flex-col md:flex-row mt-2.5 gap-5">
             <div className="flex items-center gap-3">
               <RadioGroupItem value="default" id="r1" />
               <Label htmlFor="r1" className="text-sm">Company trading address</Label>
@@ -144,7 +151,7 @@ const DeliveryDetails = ({ onNext, onBack }) => {
       {/* Footer Buttons */}
       <div className="flex justify-between mt-6 bg-slate-50 px-4 py-2 rounded-b-xl">
         <Button variant="ghost" size="sm" className="text-primary hover:text-primary hover:bg-primary/10" onClick={onBack}>BACK</Button>
-        <Button variant="ghost" size="sm" className="text-primary hover:text-primary hover:bg-primary/10" onClick={onNext}>NEXT</Button>
+        <Button variant="ghost" size="sm" className="text-primary hover:text-primary hover:bg-primary/10" onClick={onHandleNext}>NEXT</Button>
       </div>
     </div>
   );

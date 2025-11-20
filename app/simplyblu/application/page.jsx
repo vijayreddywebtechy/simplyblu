@@ -28,12 +28,20 @@ const Page = () => {
       ),
     },
     {
+      label: "Consents",
+      description: "",
+      content: <Conscents 
+          onNext={() => setActiveStep(3)}
+          onBack={() => setActiveStep(1)}
+      />,
+    },
+    {
       label: "Product Setup",
       description: "",
       content: (
         <ProductSetup
-          onNext={() => setActiveStep(3)}
-          onBack={() => setActiveStep(1)}
+          onNext={() => setActiveStep(4)}
+          onBack={() => setActiveStep(2)}
         />
       ),
     },
@@ -42,16 +50,10 @@ const Page = () => {
       description: "",
       content: (
         <DeliveryDetails
-          onNext={() => setActiveStep(4)}
-          onBack={() => setActiveStep(2)}
+          onBack={() => setActiveStep(3)}
         />
       ),
-    },
-    {
-      label: "Consents",
-      description: "",
-      content: <Conscents onBack={() => setActiveStep(3)} />,
-    },
+    }
   ];
 
   return (

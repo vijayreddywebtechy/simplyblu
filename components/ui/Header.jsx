@@ -1,3 +1,4 @@
+"use client";
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -6,7 +7,7 @@ import standartbankLogo from '@/public/standardbank-logo.svg'
 const Header = () => {
   return (
     <div className='w-full max-w-7xl mx-auto py-4 flex items-center justify-between gap-4'>
-        <Link href="/">
+        <Link href="/simplyblu">
             <Image
               src={standartbankLogo}
               alt="Standardbank Logo"
