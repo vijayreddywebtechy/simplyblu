@@ -15,13 +15,10 @@ const headingClass =
 const textClass =
   "font-bspro text-sm font-normal leading-normal text-gray-dark mb-3";
 
-const Conscents = ({ onBack }) => {
+const Conscents = ({ onNext, onBack }) => {
   const router = useRouter();
   const [purchaseOption, setPurchaseOption] = useState("rent");
 
-  const onHandleNext = () => {
-    router.push("/simplyblu/merchant-app-and-card-machine");
-  };
 
   return (
     <div className="border border-gray-200 rounded-xl">
@@ -91,8 +88,8 @@ const Conscents = ({ onBack }) => {
       </div>
               {/* Footer Buttons */}
         <div className="flex justify-between mt-6 bg-slate-50 px-4 py-2 rounded-b-xl">
-          <Button variant="ghost" size="sm" className="text-primary hover:text-primary hover:bg-primary/10" onClick={onBack}>BACK</Button>
-          <Button variant="ghost" size="sm" className="text-primary hover:text-primary hover:bg-primary/10"  onClick={() => onHandleNext()}>NEXT</Button>
+        <Button variant="ghost" size="sm" className="text-primary hover:text-primary hover:bg-primary/10" onClick={onBack}>BACK</Button>
+        <Button variant="ghost" size="sm" className="text-primary hover:text-primary hover:bg-primary/10" onClick={onNext}>NEXT</Button>
         </div>
     </div>
   );
