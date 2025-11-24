@@ -9,61 +9,83 @@ import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import CustomReactSelect from "@/components/ui/CustomReactSelect";
+import { dummyData } from "@/lib/utils";
+import { useAccessToken } from "@/hooks/useAccessToken";
+import { usePreApplication } from "@/hooks/usePreApplication";
+
+const businessTypeOptions = [
+  { value: "sole-proprietor", label: "Sole Proprietor" },
+  { value: "partnership", label: "Partnership" },
+  { value: "private-company", label: "Private Company" },
+  { value: "public-company", label: "Public Company" },
+  { value: "npo", label: "Non-Profit Organisation" },
+  { value: "trust", label: "Trust" },
+];
+
+const provinceOptions = [
+  { value: "gauteng", label: "Gauteng" },
+  { value: "western-cape", label: "Western Cape" },
+  { value: "kwazulu-natal", label: "KwaZulu-Natal" },
+  { value: "EC", label: "Eastern Cape" },
+  { value: "free-state", label: "Free State" },
+  { value: "limpopo", label: "Limpopo" },
+  { value: "mpumalanga", label: "Mpumalanga" },
+  { value: "north-west", label: "North West" },
+  { value: "northern-cape", label: "Northern Cape" },
+];
+
+const cityOptions = [
+  { value: "johannesburg", label: "Johannesburg" },
+  { value: "cape-town", label: "Cape Town" },
+  { value: "durban", label: "Durban" },
+  { value: "pretoria", label: "Pretoria" },
+  { value: "port-elizabeth", label: "Port Elizabeth" },
+];
 
 const Page = () => {
   const router = useRouter();
+  const accessTokenMutation = useAccessToken();
+  const preApplicationSubmit = usePreApplication();
   const [formData, setFormData] = useState({
-    firstName: "",
-    surname: "",
-    idNumber: "",
-    cellNumber: "",
-    email: "",
-    isOnlyOwner: "",
-    isCompanyRegistered: "",
-    isSoleShareholder: "",
-    businessType: "",
-    registeredBusinessName: "",
-    grossAnnualTurnover: "",
-    registrationNumber: "",
-    province: "",
-    city: "",
-    privacyAccepted: false,
+    firstName: dummyData?.directorDetails[0]?.firstName || "",
+    surname: dummyData?.directorDetails[0]?.lastName || "",
+    idNumber: dummyData?.directorDetails[0]?.identificationNumber || "",
+    cellNumber: dummyData?.directorDetails[0]?.cellphoneNumber || "",
+    email: dummyData?.directorDetails[0]?.emailAddress || "",
+    isOnlyOwner: dummyData?.businessDetails?.soleShareholdingInd ? "yes" : "no",
+    isCompanyRegistered: !!dummyData?.businessDetails
+      ?.businessRegistrationNumber
+      ? "yes"
+      : "no",
+    isSoleShareholder: dummyData?.businessDetails?.soleShareholdingInd
+      ? "yes"
+      : "no",
+    businessType: dummyData?.businessDetails?.businessType || "",
+    registeredBusinessName: dummyData?.businessDetails?.businessName || "",
+    grossAnnualTurnover: dummyData?.businessDetails?.businessTurnover || "",
+    registrationNumber:
+      dummyData?.businessDetails?.businessRegistrationNumber || "",
+    province: dummyData?.businessDetails?.businessProvince || "",
+    city: dummyData?.businessDetails?.businessCity || "cape-town",
+    privacyAccepted: true,
   });
 
   const [showFullPrivacy, setShowFullPrivacy] = useState(false);
 
-  const businessTypeOptions = [
-    { value: "sole-proprietor", label: "Sole Proprietor" },
-    { value: "partnership", label: "Partnership" },
-    { value: "private-company", label: "Private Company" },
-    { value: "public-company", label: "Public Company" },
-    { value: "npo", label: "Non-Profit Organisation" },
-    { value: "trust", label: "Trust" },
-  ];
-
-  const provinceOptions = [
-    { value: "gauteng", label: "Gauteng" },
-    { value: "western-cape", label: "Western Cape" },
-    { value: "kwazulu-natal", label: "KwaZulu-Natal" },
-    { value: "eastern-cape", label: "Eastern Cape" },
-    { value: "free-state", label: "Free State" },
-    { value: "limpopo", label: "Limpopo" },
-    { value: "mpumalanga", label: "Mpumalanga" },
-    { value: "north-west", label: "North West" },
-    { value: "northern-cape", label: "Northern Cape" },
-  ];
-
-  const cityOptions = [
-    { value: "johannesburg", label: "Johannesburg" },
-    { value: "cape-town", label: "Cape Town" },
-    { value: "durban", label: "Durban" },
-    { value: "pretoria", label: "Pretoria" },
-    { value: "port-elizabeth", label: "Port Elizabeth" },
-  ];
-
-  const handleContinue = () => {
+  const handleContinue = async () => {
     // Navigate to next page or handle form submission
-    router.push("/simplyblu/select-suits");
+    accessTokenMutation.mutate(undefined, {
+      onSuccess: () => {
+        preApplicationSubmit.mutate(
+          { body: dummyData },
+          {
+            onSuccess: () => {
+              alert("Pre-application submitted successfully");
+            },
+          }
+        );
+      },
+    });
   };
 
   return (
@@ -262,7 +284,6 @@ const Page = () => {
               </div>
             )}
 
-
             {/* Conditional fields based on company registration status */}
             {formData.isCompanyRegistered === "yes" && (
               <>
@@ -342,7 +363,9 @@ const Page = () => {
                     <Label className="inline-block mb-1.5">CITY</Label>
                     <CustomReactSelect
                       instanceId="company-city"
-                      value={cityOptions.find((opt) => opt.value === formData.city)}
+                      value={cityOptions.find(
+                        (opt) => opt.value === formData.city
+                      )}
                       onChange={(selectedOption) =>
                         setFormData({
                           ...formData,
@@ -362,9 +385,7 @@ const Page = () => {
               <>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-14 mt-6">
                   <div>
-                    <Label className="inline-block mb-1.5">
-                      BUSINESS NAME
-                    </Label>
+                    <Label className="inline-block mb-1.5">BUSINESS NAME</Label>
                     <Input
                       type="text"
                       placeholder="Enter your business name"
@@ -417,7 +438,9 @@ const Page = () => {
                     <Label className="inline-block mb-1.5">CITY</Label>
                     <CustomReactSelect
                       instanceId="company-city-unreg"
-                      value={cityOptions.find((opt) => opt.value === formData.city)}
+                      value={cityOptions.find(
+                        (opt) => opt.value === formData.city
+                      )}
                       onChange={(selectedOption) =>
                         setFormData({
                           ...formData,
@@ -506,7 +529,7 @@ const Page = () => {
             <Button
               className="w-full max-w-[300px] mx-auto md:mx-0 h-12 bg-primary hover:bg-primary/90 text-white"
               onClick={handleContinue}
-              disabled={!formData.privacyAccepted}
+              // disabled={!formData.privacyAccepted}
             >
               CONTINUE
             </Button>
