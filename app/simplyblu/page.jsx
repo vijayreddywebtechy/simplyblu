@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -23,15 +24,15 @@ const businessTypeOptions = [
 ];
 
 const provinceOptions = [
-  { value: "gauteng", label: "Gauteng" },
-  { value: "western-cape", label: "Western Cape" },
-  { value: "kwazulu-natal", label: "KwaZulu-Natal" },
-  { value: "EC", label: "Eastern Cape" },
-  { value: "free-state", label: "Free State" },
-  { value: "limpopo", label: "Limpopo" },
-  { value: "mpumalanga", label: "Mpumalanga" },
-  { value: "north-west", label: "North West" },
-  { value: "northern-cape", label: "Northern Cape" },
+  { value: "ZAF.GP", label: "Gauteng" },
+  { value: "ZAF.WC", label: "Western Cape" },
+  { value: "ZAF.KZN", label: "KwaZulu-Natal" },
+  { value: "ZAF.EC", label: "Eastern Cape" },
+  { value: "ZAF.FS", label: "Free State" },
+  { value: "ZAF.LP", label: "Limpopo" },
+  { value: "ZAF.MP", label: "Mpumalanga" },
+  { value: "ZAF.NW", label: "North West" },
+  { value: "ZAF.NC", label: "Northern Cape" },
 ];
 
 const cityOptions = [
@@ -44,43 +45,114 @@ const cityOptions = [
 
 const Page = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
   const accessTokenMutation = useAccessToken();
   const preApplicationSubmit = usePreApplication();
   const [formData, setFormData] = useState({
-    firstName: dummyData?.directorDetails[0]?.firstName || "",
-    surname: dummyData?.directorDetails[0]?.lastName || "",
-    idNumber: dummyData?.directorDetails[0]?.identificationNumber || "",
-    cellNumber: dummyData?.directorDetails[0]?.cellphoneNumber || "",
-    email: dummyData?.directorDetails[0]?.emailAddress || "",
-    isOnlyOwner: dummyData?.businessDetails?.soleShareholdingInd ? "yes" : "no",
-    isCompanyRegistered: !!dummyData?.businessDetails
-      ?.businessRegistrationNumber
-      ? "yes"
-      : "no",
-    isSoleShareholder: dummyData?.businessDetails?.soleShareholdingInd
-      ? "yes"
-      : "no",
-    businessType: dummyData?.businessDetails?.businessType || "",
-    registeredBusinessName: dummyData?.businessDetails?.businessName || "",
-    grossAnnualTurnover: dummyData?.businessDetails?.businessTurnover || "",
-    registrationNumber:
-      dummyData?.businessDetails?.businessRegistrationNumber || "",
-    province: dummyData?.businessDetails?.businessProvince || "",
-    city: dummyData?.businessDetails?.businessCity || "cape-town",
-    privacyAccepted: true,
+    firstName: "",
+    surname: "",
+    idNumber: "",
+    cellNumber: "",
+    email: "",
+    isOnlyOwner: "",
+    isCompanyRegistered: "",
+    isSoleShareholder: "",
+    businessType: "",
+    registeredBusinessName: "",
+    grossAnnualTurnover: "",
+    registrationNumber: "",
+    province: "",
+    city: "",
+    privacyAccepted: false,
   });
 
   const [showFullPrivacy, setShowFullPrivacy] = useState(false);
 
   const handleContinue = async () => {
     // Navigate to next page or handle form submission
+    const productNumber = searchParams.get("productNumber") || "ZPOS";
+    const pricingOption = searchParams.get("pricingOption") || "ZSIB";
+    const payload = {
+      productDetails: {
+        productNumber: productNumber || "",
+        productDescription: productNumber === "ZPOS" ? "SIMPLY_BLU" : "",
+        productCategory: "optional",
+        pricingOption: pricingOption || "",
+      },
+      directorDetails: [
+        {
+          status: null,
+          preferredCommunicationMethod: null,
+          pipDetails: {
+            publicOfficialRelatedDetails: {
+              typeOfRelationship: null,
+              surname: formData.surname,
+              relatedToPublicOfficial: null,
+              name: formData.firstName,
+            },
+            publicOfficial: false,
+          },
+          mainApplicant: true,
+          loggedInUser: true,
+          lastName: formData.surname,
+          identificationType: "SAID",
+          identificationNumber: formData.idNumber,
+          identificationCountryCode: "ZA",
+          firstName: formData.firstName,
+          emailAddress: formData.email,
+          digitalId: null,
+          cellphoneNumber: formData.cellNumber,
+          bpId: null,
+          authorizedToApply: false,
+        },
+      ],
+      consents: {
+        partnerConsents: {
+          creditFraudConsent: true,
+          confirmIdentityConsent: true,
+          collectShare: true,
+        },
+        marketingConsents: {
+          shareCustomerData: false,
+          receiveMarketing: false,
+          marketResearch: false,
+          externalMarketing: false,
+        },
+      },
+      businessDetails: {
+        soleShareholdingInd: formData.isSoleShareholder === "yes",
+        createLead: null,
+        businessType: "SOLE PROPRIETOR",
+        businessTurnover: formData.grossAnnualTurnover,
+        businessRegistrationNumber: formData.registrationNumber,
+        businessProvince: "ZAF.KZN",
+        businessName: formData.registeredBusinessName,
+        businessCity: formData.city,
+      },
+      applicationDetails: {
+        inflightCustomerDataId: "SIMPLY_BLU",
+        bpGuid: null,
+        applicationId: "null",
+      },
+    };
+    console.log(payload);
+
     accessTokenMutation.mutate(undefined, {
       onSuccess: () => {
         preApplicationSubmit.mutate(
-          { body: dummyData },
+          { body: payload },
           {
-            onSuccess: () => {
-              alert("Pre-application submitted successfully");
+            onSuccess: (data) => {
+              if (data?.businessStatus != 52000) {
+                // SHOW Error Toast
+              } else {
+                localStorage.setItem(
+                  "preApplicationResponse",
+                  JSON.stringify(data)
+                );
+                alert("Pre-application submitted successfully");
+              }
             },
           }
         );
