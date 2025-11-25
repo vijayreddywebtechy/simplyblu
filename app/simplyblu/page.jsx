@@ -93,40 +93,42 @@ const Page = () => {
           { body: payload },
           {
             onSuccess: (data) => {
+              const status = String(data?.businessStatus);
               if (
-                data?.businessStatus === 52003 ||
-                data?.businessStatus === 52004 ||
-                data?.businessStatus === 52002 ||
-                data?.businessStatus === 52111 ||
-                data?.businessStatus === 52113 ||
-                data?.businessStatus === 52103 ||
-                data?.businessStatus === 52104
+                [
+                  "52003",
+                  "52004",
+                  "52002",
+                  "52111",
+                  "52113",
+                  "52103",
+                  "52104",
+                ].includes(status)
               ) {
                 router.push("/simplyblu/submission-status/type=moreInfo");
-              } else if (data?.businessStatus === 52105) {
+              } else if (status === "52105") {
                 router.push("/simplyblu/submission-status/type=callBack");
-              } else if (data?.businessStatus === 52109) {
+              } else if (status === "52109") {
                 router.push("/simplyblu/submission-status/type=unsuccessful");
-              } else if (data?.businessStatus === 52110) {
+              } else if (status === "52110") {
                 router.push("/simplyblu/submission-status/type=inactiveCIPC");
-              } else if (data?.businessStatus === 52112) {
+              } else if (status === "52112") {
                 router.push("/simplyblu/activeCIPC");
               } else if (
-                data?.businessStatus === 52100 ||
-                data?.businessStatus === 52101 ||
-                data?.businessStatus === 52107 ||
-                data?.businessStatus === 52108
+                ["52100", "52101", "52107", "52108"].includes(status)
               ) {
                 setIsTechnicalDifficultyPopUpOpen(true);
-              } else if (data?.businessStatus === 52104) {
+              } else if (status === "52104") {
                 setCantCompletePopUpOpen(true);
-              } else if (data?.businessStatus === 52000) {
+              } else if (status === "52000") {
                 router.push("/simplyblu/select-suits?verified=success");
                 localStorage.setItem(
                   "preApplicationResponse",
                   JSON.stringify(data)
                 );
                 alert("Pre-application submitted successfully");
+              } else {
+                console.log(data);
               }
             },
           }
