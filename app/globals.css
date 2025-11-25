@@ -140,6 +140,17 @@ a {
 }
 
 /* ===== Custom Containers ===== */
+
+/* Container */
+.page-container {
+  width: 100%;
+  max-width: 1328px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .custom-container {
   max-width: 1440px;
   padding-left: 36px;
