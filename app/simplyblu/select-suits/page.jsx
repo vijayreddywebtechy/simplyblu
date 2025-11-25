@@ -3,11 +3,13 @@
 import React from "react";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 const selectSuits = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const verified = searchParams.get("verified") === "success";
 
   const handleRegister = () => {
     router.push("/simplyblu/application");
@@ -15,24 +17,38 @@ const selectSuits = () => {
 
   return (
     <div className="min-h-screen p-4 lg:p-10 bg-gray-100">
-      <div className="text-center mb-4 md:mb-6">
-        <Link
-          href="/simplyblu/application"
-          className="inline-flex items-center text-sm text-primary"
-        >
-          <ChevronLeft className="mr-1 text-gray-500" />
-          Home
-        </Link>
-      </div>
+      {!verified ? (
+        <>
+          <div className="text-center mb-4 md:mb-6">
+            <Link
+              href="/simplyblu/application"
+              className="inline-flex items-center text-sm text-primary"
+            >
+              <ChevronLeft className="mr-1 text-gray-500" />
+              Home
+            </Link>
+          </div>
 
-      <div className="text-center mb-10 md:14 lg:mb-16 xl:mb-24">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium mb-3 md:mb-4 text-secondary">
-          SimplyBLU
-        </h1>
-        <p className="text-base sm:text-lg lg:text-xl font-normal text-secondary leading-normal">
-          Select the option that best suits your business
-        </p>
-      </div>
+          <div className="text-center mb-10 md:14 lg:mb-16 xl:mb-24">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium mb-3 md:mb-4 text-secondary">
+              SimplyBLU
+            </h1>
+            <p className="text-base sm:text-lg lg:text-xl font-normal text-secondary leading-normal">
+              Select the option that best suits your business
+            </p>
+          </div>
+        </>
+      ) : (
+        <>
+          <h1 className="text-xl sm:text-2xl lg:text-[28px] text-gray-400 text-center mb-5 sm:mb-6">
+            Verification Successful
+          </h1>
+          <div className="text-center mb-4 md:mb-6 border-2 border-yellow-300 px-8 py-6 bg-white text-gray-400 text-base">
+            Your business has been verified. You can now proceed to complete the
+            rest of the business account application.
+          </div>
+        </>
+      )}
 
       <div className="flex items-center justify-center">
         <div className="w-full max-w-[1200px] bg-white rounded-[20px] px-4 py-11">
