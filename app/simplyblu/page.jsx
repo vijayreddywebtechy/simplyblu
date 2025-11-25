@@ -1,11 +1,12 @@
 "use client";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useAccessToken } from "@/hooks/useAccessToken";
 import { usePreApplication } from "@/hooks/usePreApplication";
 import SimplyBluFields from "@/components/simplyblu";
 import RHFProvider from "@/providers/ReactHookFormProvider";
 
 const Page = () => {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const accessTokenMutation = useAccessToken();
   const preApplicationSubmit = usePreApplication();
@@ -85,9 +86,26 @@ const Page = () => {
           { body: payload },
           {
             onSuccess: (data) => {
-              if (data?.businessStatus != 52000) {
-                // SHOW Error Toast
-              } else {
+              if (
+                data?.businessStatus === 52003 ||
+                data?.businessStatus === 52004 ||
+                data?.businessStatus === 52002 ||
+                data?.businessStatus === 52111 ||
+                data?.businessStatus === 52113 ||
+                data?.businessStatus === 52103 ||
+                data?.businessStatus === 52104
+              ) {
+                router.push("/simplyblu/submission-status/type=moreInfo");
+              } else if (data?.businessStatus === 52105) {
+                router.push("/simplyblu/submission-status/type=callBack");
+              } else if (data?.businessStatus === 52109) {
+                router.push("/simplyblu/submission-status/type=unsuccessful");
+              } else if (data?.businessStatus === 52110) {
+                router.push("/simplyblu/submission-status/type=inactiveCIPC");
+              } else if (data?.businessStatus === 52112) {
+                router.push("/simplyblu/activeCIPC");
+              } else if (data?.businessStatus === 52000) {
+                router.push("/simplyblu/select-suits?verified=success");
                 localStorage.setItem(
                   "preApplicationResponse",
                   JSON.stringify(data)
