@@ -10,16 +10,13 @@ export const useAccessToken = () => {
 
   return useMutation({
     mutationFn: async () => {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_ACCESS_TOKEN_URL}as/token.oauth2`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body,
-        }
-      );
+      const res = await fetch(process.env.NEXT_PUBLIC_ACCESS_TOKEN_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body,
+      });
 
       if (!res.ok) {
         throw new Error("Failed to login");

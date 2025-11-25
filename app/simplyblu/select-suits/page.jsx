@@ -15,6 +15,11 @@ const selectSuits = () => {
     router.push("/simplyblu/application");
   };
 
+  const handleRedirect = () => {
+    const url = `${process.env.NEXT_PUBLIC_PING_AUTHORIZATION_URL}?client_id=${process.env.NEXT_PUBLIC_PING_CLIENT_ID}&response_type=code&scope=openid%20profile%20email&redirect_uri=${process.env.NEXT_PUBLIC_PING_REDIRECT_URI}&code_challenge=${process.env.NEXT_PUBLIC_CODE_CHALLENGE}&code_challenge_method=${process.env.NEXT_PUBLIC_CODE_CHALLENGE_METHOD}&nonce=${process.env.NEXT_PUBLIC_PING_NONCE_STATE}&state=${process.env.NEXT_PUBLIC_PING_NONCE_STATE}`;
+    window.open(url, "_self");
+  };
+
   return (
     <div className="min-h-screen p-4 lg:p-10 bg-gray-100">
       {!verified ? (
@@ -67,7 +72,7 @@ const selectSuits = () => {
                 </p>
                 <Button
                   className="mt-auto mb-4 sm:h-[50px] text-white uppercase"
-                  onClick={() => console.log("Clicked!")}
+                  onClick={handleRedirect}
                 >
                   SIGN IN
                 </Button>
@@ -95,7 +100,7 @@ const selectSuits = () => {
 
                 <Button
                   className="mt-auto mb-4 sm:h-[50px] text-white uppercase"
-                  onClick={() => handleRegister()}
+                  onClick={handleRedirect}
                 >
                   REGISTER
                 </Button>
