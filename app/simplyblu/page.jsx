@@ -4,12 +4,17 @@ import { useAccessToken } from "@/hooks/useAccessToken";
 import { usePreApplication } from "@/hooks/usePreApplication";
 import SimplyBluFields from "@/components/simplyblu";
 import RHFProvider from "@/providers/ReactHookFormProvider";
+import CustomDialog from "@/components/dynamic/CustomDialog";
+import { useState } from "react";
 
 const Page = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const accessTokenMutation = useAccessToken();
   const preApplicationSubmit = usePreApplication();
+  const [isTechnicalDifficultyPopUpOpen, setIsTechnicalDifficultyPopUpOpen] =
+    useState(false);
+  const [cantCompletePopUpOpen, setCantCompletePopUpOpen] = useState(false);
 
   const handleContinue = async (data) => {
     console.log(data);
@@ -104,6 +109,15 @@ const Page = () => {
                 router.push("/simplyblu/submission-status/type=inactiveCIPC");
               } else if (data?.businessStatus === 52112) {
                 router.push("/simplyblu/activeCIPC");
+              } else if (
+                data?.businessStatus === 52100 ||
+                data?.businessStatus === 52101 ||
+                data?.businessStatus === 52107 ||
+                data?.businessStatus === 52108
+              ) {
+                setIsTechnicalDifficultyPopUpOpen(true);
+              } else if (data?.businessStatus === 52104) {
+                setCantCompletePopUpOpen(true);
               } else if (data?.businessStatus === 52000) {
                 router.push("/simplyblu/select-suits?verified=success");
                 localStorage.setItem(
@@ -140,6 +154,30 @@ const Page = () => {
           </RHFProvider>
         </div>
       </div>
+      <CustomDialog
+        open={isTechnicalDifficultyPopUpOpen}
+        setOpen={setIsTechnicalDifficultyPopUpOpen}
+        title="Technical Difficulties"
+        confirmText="RETRY"
+        cancelText="BACK TO BROWSING"
+        onConfirm={() => {
+          setIsTechnicalDifficultyPopUpOpen(false);
+        }}
+      >
+        <p>Something went wrong on our side.</p>
+      </CustomDialog>
+      <CustomDialog
+        open={cantCompletePopUpOpen}
+        setOpen={setCantCompletePopUpOpen}
+        title="Application Cannot Be Completed"
+        confirmText="RETRY"
+        cancelText="BACK TO BROWSING"
+        onConfirm={() => {
+          setCantCompletePopUpOpen(false);
+        }}
+      >
+        <p>Something went wrong on our side.</p>
+      </CustomDialog>
     </div>
   );
 };
