@@ -20,11 +20,11 @@ export async function POST(request) {
       {
         method: "POST",
         headers,
-        body: JSON.stringify(body), // stringify the object
+        body: JSON.stringify(body),
       }
     );
 
-    const data = await res.json();
+    const data = await res.json();    
 
     return new Response(JSON.stringify(data), {
       status: res.status,

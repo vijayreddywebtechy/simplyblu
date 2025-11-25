@@ -1,17 +1,19 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAccessToken } from "@/hooks/useAccessToken";
-import { usePreApplication } from "@/hooks/usePreApplication";
 import SimplyBluFields from "@/components/simplyblu";
 import RHFProvider from "@/providers/ReactHookFormProvider";
 import CustomDialog from "@/components/dynamic/CustomDialog";
 import { useState } from "react";
+import { useCustomMutation } from "@/hooks/useCustomMutation";
 
 const Page = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const accessTokenMutation = useAccessToken();
-  const preApplicationSubmit = usePreApplication();
+  const preApplicationSubmit = useCustomMutation({
+    url: "/api/get-preapplication",
+  });
   const [isTechnicalDifficultyPopUpOpen, setIsTechnicalDifficultyPopUpOpen] =
     useState(false);
   const [cantCompletePopUpOpen, setCantCompletePopUpOpen] = useState(false);
