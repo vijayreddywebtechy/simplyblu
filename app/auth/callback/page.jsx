@@ -49,9 +49,10 @@ export default function AuthCallback() {
     Boolean(processId)
   );
 
-  // When digital offer is received, navigate
   useEffect(() => {
     if (digitalOffer && applicationData) {
+      localStorage.setItem("digitalOffer", JSON.stringify(digitalOffer));
+      localStorage.setItem("applicationData", JSON.stringify(applicationData));
       router.push("/simplyblu/application");
     }
   }, [digitalOffer, router, applicationData]);
