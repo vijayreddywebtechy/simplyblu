@@ -1,27 +1,60 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import axios from "axios";
+import { useGet } from "@/hooks/useCustomGet";
+import { useCustomMutation } from "@/hooks/useCustomMutation";
 
 export default function AuthCallback() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const fetchDigitalOffer = async () => {
-    const offerId =
-      JSON.parse(localStorage.getItem("preApplicationResponse"))
-        ?.digitalOfferId || "";
-    const accessToken = localStorage.getItem("accessToken") || "";
-    const response = await axios.get(
-      `/api/get-digital-offer?offerId=${offerId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
+
+  const [offerId, setOfferId] = useState("");
+  const [processId, setProcessId] = useState("");
+
+  const tokenMutation = useCustomMutation({
+    url: process.env.NEXT_PUBLIC_ACCESS_TOKEN_URL,
+    config: {
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    },
+    onSuccess: (data) => {
+      if (!data?.access_token) {
+        sessionStorage.removeItem("ping_access_token");
+        document.cookie = `isAuthenticated=false; path=/; max-age=0;`;
+        router.push("/simplyblu");
+        return;
       }
-    );
-    return response.data;
-  };
+
+      sessionStorage.setItem("ping_access_token", data.access_token);
+      document.cookie = `isAuthenticated=true; path=/; max-age=${data.expires_in}; secure; samesite=lax;`;
+
+      const pre = JSON.parse(localStorage.getItem("preApplicationResponse"));
+      setOfferId(pre?.digitalOfferId || "");
+      setProcessId(pre?.processId || "");
+    },
+
+    onError: () => {
+      router.push("/simplyblu");
+    },
+  });
+
+  const { data: digitalOffer } = useGet(
+    "digital-offer",
+    `/digital-offer-mymobiz/offer/${offerId}`,
+    Boolean(offerId)
+  );
+  const { data: applicationData } = useGet(
+    "application-process-data",
+    `/business-lending-mymobiz/application-process-data/${processId}`,
+    Boolean(processId)
+  );
+
+  // When digital offer is received, navigate
+  useEffect(() => {
+    if (digitalOffer && applicationData) {
+      router.push("/simplyblu/application");
+    }
+  }, [digitalOffer, router, applicationData]);
 
   useEffect(() => {
     const code = searchParams.get("code");
@@ -38,29 +71,9 @@ export default function AuthCallback() {
       body.append("code_verifier", process.env.NEXT_PUBLIC_PING_CODE_VERIFIER);
       body.append("code", code);
 
-      const res = await fetch(process.env.NEXT_PUBLIC_ACCESS_TOKEN_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      tokenMutation.mutate({
         body: body.toString(),
       });
-
-      if (!res.ok) {
-        router.push("/simplyblu");
-        return;
-      }
-
-      const data = await res.json();
-      if (data?.access_token) {
-        sessionStorage.setItem("ping_access_token", data.access_token);
-        document.cookie = `isAuthenticated=true; path=/; max-age=${data.expires_in}; secure; samesite=lax;`;
-        await fetchDigitalOffer();
-        router.push("/simplyblu/application");
-      } else {
-        sessionStorage.removeItem("ping_access_token");
-        document.cookie = `isAuthenticated=false; path=/; max-age=0;`;
-        router.push("/simplyblu");
-        return;
-      }
     }
 
     fetchToken();

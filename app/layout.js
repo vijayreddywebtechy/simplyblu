@@ -1,5 +1,6 @@
 import "./globals.css";
 import { bentonSansPro } from "./fonts";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
 
 export const metadata = {
   title: "Simplyblu BCB | Standard Bank",
@@ -10,7 +11,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={bentonSansPro.variable}>
       <body className={`${bentonSansPro.className} antialiased`}>
-        {children}
+        <ReactQueryProvider>{children}</ReactQueryProvider>
       </body>
     </html>
   );
