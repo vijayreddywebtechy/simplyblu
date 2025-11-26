@@ -25,6 +25,7 @@ export default function CustomDialog({
   contentClassName = "",
   footerClassName = "",
   onConfirm,
+  onCancel,
   confirmText = "Save changes",
   cancelText = "Cancel",
   showCancel = true,
@@ -81,7 +82,7 @@ export default function CustomDialog({
               <>
                 {showCancel && (
                   <DialogClose asChild>
-                    <Button variant="outline" className="w-full rounded-lg uppercase">
+                    <Button variant="outline" className="w-full rounded-lg uppercase" onClick={onCancel}>
                       {cancelText}
                     </Button>
                   </DialogClose>

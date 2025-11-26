@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useGet } from "@/hooks/useCustomGet";
 import { useCustomMutation } from "@/hooks/useCustomMutation";
+import CustomDialog from "@/components/dynamic/CustomDialog";
 
 export default function AuthCallback() {
   const router = useRouter();
@@ -11,6 +12,8 @@ export default function AuthCallback() {
 
   const [offerId, setOfferId] = useState("");
   const [processId, setProcessId] = useState("");
+  const [isTechnicalDifficultyPopUpOpen, setIsTechnicalDifficultyPopUpOpen] =
+    useState(false);
 
   const tokenMutation = useCustomMutation({
     url: process.env.NEXT_PUBLIC_ACCESS_TOKEN_URL,
@@ -38,16 +41,32 @@ export default function AuthCallback() {
     },
   });
 
-  const { data: digitalOffer } = useGet(
+  const {
+    data: digitalOffer,
+    isError: isDigitalOfferError,
+    refetch: retryDigitalOffer,
+  } = useGet(
     "digital-offer",
     `/digital-offer-mymobiz/offer/${offerId}`,
     Boolean(offerId)
   );
-  const { data: applicationData } = useGet(
+  const {
+    data: applicationData,
+    isError: isApplicationDataError,
+    refetch: retryApplicationData,
+  } = useGet(
     "application-process-data",
     `/business-lending-mymobiz/application-process-data/${processId}`,
     Boolean(processId)
   );
+
+  useEffect(() => {
+    console.log(isApplicationDataError, isDigitalOfferError);
+
+    if (isDigitalOfferError || isApplicationDataError) {
+      setIsTechnicalDifficultyPopUpOpen(true);
+    }
+  }, [isDigitalOfferError, isApplicationDataError]);
 
   useEffect(() => {
     if (digitalOffer && applicationData) {
@@ -80,5 +99,25 @@ export default function AuthCallback() {
     fetchToken();
   }, [router, searchParams]);
 
-  return null;
+  return (
+    <CustomDialog
+      open={isTechnicalDifficultyPopUpOpen}
+      setOpen={setIsTechnicalDifficultyPopUpOpen}
+      title="Technical Difficulties"
+      confirmText="RETRY"
+      cancelText="BACK TO BROWSING"
+      onCancel={() => setIsTechnicalDifficultyPopUpOpen(false)}
+      onConfirm={async () => {
+        if (isDigitalOfferError) {
+          await retryDigitalOffer();
+        }
+        if (isApplicationDataError) {
+          await retryApplicationData();
+        }
+        setIsTechnicalDifficultyPopUpOpen(false);
+      }}
+    >
+      <p>Something went wrong on our side.</p>
+    </CustomDialog>
+  );
 }

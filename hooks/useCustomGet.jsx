@@ -28,5 +28,6 @@ export const useGet = (key, url, enabled = true, headers = {}, params = {}) => {
     queryKey: [key, params],
     queryFn: fetchData,
     enabled,
+    retry: false,
   });
 };
