@@ -28,8 +28,8 @@ const page = () => {
     router.push("/simplyblu/application");
   };
   return (
-    <div className="bg-slate-50 px-3 py-8">
-      <div className="bg-white rounded-xl px-3 py-6 lg:p-14 max-w-7xl mx-auto">
+    <div className="bg-slate-50 py-8">
+      <div className="bg-white rounded-xl page-container py-6 lg:py-14">
         <div className="text-center mb-12 md:mb-16">
           <h1 className="text-2xl sm:text-3xl lg:text-[32px] font-normal text-gray-medium leading-tight mb-3.5">
             Merchant app and card machine

@@ -20,8 +20,7 @@ const numDescClass = "text-xs text-gray-light uppercase leading-tight";
 
 const page = () => {
   return (
-    <div className="px-3">
-      <div className="w-full max-w-7xl mx-auto py-5 sm:py-14">
+      <div className="page-container py-5 sm:py-14">
         <Image
           src={successIcon}
           width={54}
@@ -208,7 +207,6 @@ const page = () => {
           Sign in to business banking
         </Button>
       </div>
-    </div>
   );
 };
 

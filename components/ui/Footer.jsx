@@ -7,7 +7,7 @@ import deviceApp from '@/public/img/device-app.png'
 
 const Footer = () => {
   return (
-<div className="w-full max-w-7xl mx-auto px-4 py-6 md:py-2 flex flex-col md:flex-row items-center justify-between gap-8">
+<div className="page-container py-6 md:py-2 flex flex-col md:flex-row items-center justify-between gap-8">
   {/* Left Section */}
   <div className="flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-6 md:gap-16">
     <h5 className="font-bspro text-2xl md:text-3xl text-white font-medium mb-4 md:mb-0 leading-tight ">

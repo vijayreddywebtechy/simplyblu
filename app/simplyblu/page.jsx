@@ -67,8 +67,8 @@ const Page = () => {
   };
 
   return (
-    <div className="bg-slate-50 min-h-screen py-8 px-3">
-      <div className="max-w-7xl mx-auto bg-white rounded-xl shadow-sm p-6 sm:p-8 lg:p-12">
+    <div className="bg-slate-50 min-h-screen py-8">
+      <div className="page-container bg-white rounded-xl shadow-sm p-6 sm:p-8 lg:p-12">
         <div className="max-w-4xl mx-auto">
           {/* Title */}
           <div className="text-center mb-12">
