@@ -10,14 +10,14 @@ import { ChevronLeft } from "lucide-react";
 
 const page = () => {
   return (
-    <div className="min-h-screen bg-gray-50 py-6 px-4 sm:py-8 sm:px-6 md:py-10 md:px-8 lg:py-12 lg:px-12">
+    <div className="bg-gray-50 py-6 sm:py-8 md:py-10 lg:py-12">
       <div className="page-container">
         <div className="text-center mb-12 sm:mb-16 md:mb-20">
           <Link href="/" className="flex justify-center items-center mb-6 text-primary text-sm">
             <ChevronLeft className="w-6 h-6 mr-1 text-gray-600 hover:text-gray-800" strokeWidth={1.5} />
             <span>Home</span>
           </Link>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-secondary">
+          <h2 className="text-3xl md:text-4xl lg:text-[42px] mb-4 text-secondary">
             SimplyBLU
           </h2>
           <p className="mb-4 text-base sm:text-lg md:text-xl text-gray-700">
@@ -26,7 +26,7 @@ const page = () => {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
           {/* Card 1 - Single Owner */}
-          <div className="bg-white rounded-xl sm:rounded-2xl shadow-sm p-5 sm:p-6 md:p-7 lg:p-8 flex flex-col">
+          <div className="bg-white border border-neutral-200 rounded-xl sm:rounded-2xl shadow-sm p-5 sm:p-6 md:p-7 lg:p-8 flex flex-col">
             <div className="flex justify-center mb-4 sm:mb-5 md:mb-8">
               <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center">
                 <Image
@@ -112,7 +112,7 @@ const page = () => {
           </div>
 
           {/* Card 2 - Multiple Owners */}
-          <div className="bg-white rounded-xl sm:rounded-2xl shadow-sm p-5 sm:p-6 md:p-7 lg:p-8 flex flex-col">
+          <div className="bg-white border border-neutral-200 rounded-xl sm:rounded-2xl shadow-sm p-5 sm:p-6 md:p-7 lg:p-8 flex flex-col">
             <div className="flex justify-center mb-4 sm:mb-5 md:mb-8">
               <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center">
                 <Image
@@ -184,7 +184,7 @@ const page = () => {
           </div>
 
           {/* Card 3 - Open Account */}
-          <div className="bg-white rounded-xl sm:rounded-2xl shadow-sm p-5 sm:p-6 md:p-7 lg:p-8 flex flex-col">
+          <div className="bg-white border border-neutral-200 rounded-xl sm:rounded-2xl shadow-sm p-5 sm:p-6 md:p-7 lg:p-8 flex flex-col">
             <div className="flex justify-center mb-4 sm:mb-5 md:mb-8">
               <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center">
                 <Image

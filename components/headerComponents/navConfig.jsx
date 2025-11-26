@@ -13,7 +13,7 @@ export const TOP_TABS = [
 // ------------------------------------------------------------
 
 export const BUSINESS_SUBNAV = [
-  { id: "biz-products", label: "Product & Services", megaType: "type1" },
+  { id: "biz-products", label: "Product & Services", href: "/business/products-services", megaType: "type1" },
   { id: "biz-bizconnect", label: "BizConnect", href: "/business/bizconnect" },
   { id: "biz-trade", label: "Trade Point", href: "/business/trade-point" },
   { id: "biz-ucount", label: "UCount Rewards", href: "/business/ucount" },
@@ -49,7 +49,7 @@ export const MEGA_TYPE_1 = {
       },
       {
         title: "Trust accounts",
-        titleHref: "/business/trust-accounts",
+        // titleHref: "/business/trust-accounts",
         links: [
           "Attorney's Trust Account",
           "Executor's Current Account",
@@ -60,7 +60,7 @@ export const MEGA_TYPE_1 = {
       },
       {
         title: "Business and corporate credit cards",
-        titleHref: "/business/credit-cards",
+        // titleHref: "/business/credit-cards",
         links: [
           "See all cards",
         ],
@@ -141,7 +141,7 @@ export const MEGA_TYPE_1 = {
     2: [ // Grow your money
       {
         title: "Business saving and investment accounts",
-        titleHref: "/business/savings-investment",
+        // titleHref: "/business/savings-investment",
         links: [
           "See all accounts",
           "Compare accounts",
@@ -323,7 +323,7 @@ export const MEGA_TYPE_1 = {
       },
       {
         title: "Innovative Payment Solution",
-        titleHref: "/business/ways-to-bank/innovative-payment",
+        // titleHref: "/business/ways-to-bank/innovative-payment",
         links: [
           "PayShap for business",
         ],
@@ -348,7 +348,7 @@ export const MEGA_TYPE_1 = {
       },
       {
         title: "Protect yourself",
-        titleHref: "/business/security/protect-yourself",
+        // titleHref: "/business/security/protect-yourself",
         links: [
           "Guard your PIN",
           "Online",
@@ -359,7 +359,7 @@ export const MEGA_TYPE_1 = {
       },
       {
         title: "Scams and fraud",
-        titleHref: "/business/security/scams-fraud",
+        // titleHref: "/business/security/scams-fraud",
         links: [
           "Scams",
           "Card fraud",

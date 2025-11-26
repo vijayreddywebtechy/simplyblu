@@ -22,9 +22,9 @@ export function MegaMenuType1() {
             <div
               key={i}
               onClick={() => setActiveIndex(i)}
-              className={`px-6 py-3.5 text-sm cursor-pointer transition-colors duration-150 ${
+              className={`px-6 py-3.5 text-sm md:text-base cursor-pointer transition-colors duration-150 ${
                 i === activeIndex
-                  ? "bg-white font-semibold text-[#0047BB] border-l-4 border-[#0047BB]"
+                  ? "bg-white text-[#0047BB]"
                   : "text-gray-700 hover:bg-white hover:text-[#0047BB]"
               }`}
             >
@@ -40,12 +40,12 @@ export function MegaMenuType1() {
               {col.titleHref ? (
                 <Link 
                   href={col.titleHref} 
-                  className="font-semibold text-gray-900 mb-3 block hover:text-[#0047BB] transition-colors duration-150"
+                  className="text-sm md:text-base text-secondary mb-2 block hover:text-primary-dark hover:underline underline-offset-4 transition-colors duration-150"
                 >
                   {col.title}
                 </Link>
               ) : (
-                <h4 className="font-semibold text-gray-900 mb-3">{col.title}</h4>
+                <h4 className="text-sm md:text-base text-secondary mb-2">{col.title}</h4>
               )}
               {col.links.length > 0 && (
                 <div className="space-y-2">
@@ -53,7 +53,7 @@ export function MegaMenuType1() {
                     <a 
                       key={idx} 
                       href="#" 
-                      className="block text-[#0055B8] hover:text-[#0047BB] hover:underline transition-colors duration-150 leading-relaxed"
+                      className="block text-sm text-[#0055B8] hover:text-[#0047BB] hover:underline underline-offset-4 transition-colors duration-150 leading-relaxed"
                     >
                       {link}
                     </a>

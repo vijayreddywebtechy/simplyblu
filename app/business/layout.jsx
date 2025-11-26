@@ -1,5 +1,6 @@
-import Header from '@/components/headerComponents/Header'
 import React from 'react'
+import Footer from '@/components/footerComponents/Footer'
+import Header from '@/components/headerComponents/Header'
 
 const BusinessLayout = ({ children }) => {
   return (
@@ -8,6 +9,7 @@ const BusinessLayout = ({ children }) => {
       <main className="flex-1">
         {children}
       </main>
+      <Footer />
     </div>
   )
 }

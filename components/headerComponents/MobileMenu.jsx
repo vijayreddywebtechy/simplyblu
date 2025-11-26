@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ChevronDown, ChevronUp, ChevronRight, ChevronLeft, X } from "lucide-react";
+import Image from "next/image";
+import sbLogo from "@/assets/sb-logo-white.png";
+import { ChevronDown, ChevronUp, ChevronRight, ChevronLeft, X, User } from "lucide-react";
 import { MEGA_TYPE_1 } from "./navConfig";
 
-export default function MobileMenu({ isOpen, onClose }) {
+export default function MobileMenu({ isOpen, onClose, selectedCountry, onCountryPickerOpen }) {
   const [businessOpen, setBusinessOpen] = useState(false);
   const [showProductsView, setShowProductsView] = useState(false);
   const [expandedCategory, setExpandedCategory] = useState(null);
@@ -40,9 +42,54 @@ export default function MobileMenu({ isOpen, onClose }) {
           <>
             {/* Main Menu */}
             {/* Close Button */}
-            <div className="flex justify-end p-4 border-b">
-              <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded">
-                <X className="w-6 h-6 text-gray-700" />
+            <div className="flex justify-between items-center p-4 bg-primary-dark">
+              <Link href="/">
+                <Image
+                  src={sbLogo}
+                  alt="Standard Bank Logo"
+                  width={158}
+                  height={42}
+                />
+              </Link>
+              <button onClick={onClose} className="p-0.5 hover:bg-gray-100 rounded">
+                <X className="w-6 h-6 text-white" />
+              </button>
+            </div>
+
+            {/* Country Picker and Sign In Section */}
+            <div className="sm:hidden flex border-b bg-[#0A2240]">
+              {/* Country Picker Button */}
+              <button 
+                type="button" 
+                onClick={() => {
+                  onCountryPickerOpen();
+                  onClose();
+                }}
+                className="w-full flex items-center gap-2 cursor-pointer text-sm text-white p-3"
+              >
+                <div className="w-[30px] h-[30px] rounded-full overflow-hidden relative flex-shrink-0">
+                  {typeof selectedCountry.flag === 'string' && selectedCountry.flag.startsWith('http') ? (
+                    <img
+                      src={selectedCountry.flag}
+                      alt={`${selectedCountry.name} Flag`}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <Image
+                      src={selectedCountry.flag}
+                      alt={`${selectedCountry.name} Flag`}
+                      fill
+                      className="object-cover"
+                    />
+                  )}
+                </div>
+                <span className="flex-1 text-left">{selectedCountry.name}</span>
+              </button>
+
+              {/* Sign In Button */}
+              <button className="w-full flex items-center justify-center gap-2 bg-[#0091FF] text-white p-3 text-sm uppercase hover:bg-[#0080d6] transition-colors">
+                <User className="w-5 h-5" />
+                <span>Sign in</span>
               </button>
             </div>
 
