@@ -6,7 +6,6 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
   font-family: var(--font-bspro), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -140,6 +139,17 @@ a {
 }
 
 /* ===== Custom Containers ===== */
+
+/* Container */
+.page-container {
+  width: 100%;
+  max-width: 1328px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .custom-container {
   max-width: 1440px;
   padding-left: 36px;
