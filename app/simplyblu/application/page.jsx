@@ -57,7 +57,7 @@ const Page = () => {
   ];
 
   return (
-    <div className="w-full max-w-7xl mx-auto py-10 px-3">
+    <div className="page-container py-10">
       <h1 className="text-2xl sm:text-3xl lg:text-[32px] font-normal text-gray-medium leading-tight mb-3.5">
         SimplyBlue Application
       </h1>

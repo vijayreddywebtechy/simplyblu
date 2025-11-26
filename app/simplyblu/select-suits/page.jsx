@@ -14,22 +14,22 @@ const selectSuits = () => {
   };
 
   return (
-    <div className="min-h-screen p-4 lg:p-10 bg-gray-100">
+    <div className="min-h-screen p-4 lg:p-10 bg-neutral-100">
       <div className="text-center mb-4 md:mb-6">
         <Link
           href="/simplyblu/application"
           className="inline-flex items-center text-sm text-primary"
         >
-          <ChevronLeft className="mr-1 text-gray-500" />
+          <ChevronLeft className="mr-1 text-neutral-700" />
           Home
         </Link>
       </div>
 
-      <div className="text-center mb-10 md:14 lg:mb-16 xl:mb-24">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium mb-3 md:mb-4 text-secondary">
+      <div className="text-center mb-12 sm:mb-16 md:mb-20">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 md:mb-4 text-secondary">
           SimplyBLU
         </h1>
-        <p className="text-base sm:text-lg lg:text-xl font-normal text-secondary leading-normal">
+        <p className="text-base sm:text-lg lg:text-xl font-normal text-neutral-700 leading-normal mb-3">
           Select the option that best suits your business
         </p>
       </div>
@@ -40,25 +40,25 @@ const selectSuits = () => {
             {/* Existing Customer Section */}
             <div className="px-0 pb-10 md:pb-0 sm:px-4 flex flex-col items-center border-b md:border-b-0 md:border-r border-gray-200">
               <div className="w-full max-w-[352px] md:mr-auto md:min-h-96 flex flex-col justify-between">
-                <h2 className="text-xl sm:text-2xl lg:text-[28px] text-gray-600 text-center mb-7 sm:mb-8 leading-tight">
+                <h2 className="text-xl sm:text-2xl lg:text-[28px] text-secondary text-center mb-7 sm:mb-8 leading-tight">
                   EXISTING STANDARD
                   <br />
                   BANK CUSTOMER
                 </h2>
 
-                <p className="text-sm sm:text-base text-gray-400 text-center mb-6 sm:mb-8 px-2">
+                <p className="text-sm sm:text-base text-neutral-700 text-center mb-6 sm:mb-8 px-2">
                   Sign in using your Standard Bank username and password
                 </p>
                 <Button
-                  className="mt-auto mb-4 sm:h-[50px] text-white uppercase"
+                  className="mt-auto mb-4"
                   onClick={() => console.log("Clicked!")}
                 >
                   SIGN IN
                 </Button>
 
-                <p className="text-xs sm:text-sm text-gray-600 text-center px-2">
+                <p className="text-xs sm:text-sm text-neutral-700 text-center px-2">
                   By signing in, I agree to the{" "}
-                  <a href="#" className="text-blue-600 hover:underline">
+                  <a href="#" className="text-primary hover:underline">
                     T&amp;Cs
                   </a>
                 </p>
@@ -68,17 +68,17 @@ const selectSuits = () => {
             {/* New Customer Section */}
             <div className="px-0 pt-10 md:pt-0 sm:px-4 flex flex-col items-center">
               <div className="w-full max-w-[352px] md:ml-auto md:min-h-96 flex flex-col justify-between">
-                <h2 className="text-xl sm:text-2xl lg:text-[28px] text-gray-600 text-center mb-7 sm:mb-8 leading-tight">
+                <h2 className="text-xl sm:text-2xl lg:text-[28px] text-secondary text-center mb-7 sm:mb-8 leading-tight">
                   NEW STANDARD BANK CUSTOMER
                 </h2>
 
-                <p className="text-sm sm:text-base text-gray-400 text-center mb-6 sm:mb-8 px-2">
+                <p className="text-sm sm:text-base text-neutral-700 text-center mb-6 sm:mb-8 px-2">
                   Register your Standard Bank online profile by providing a few
                   details and creating a username and password
                 </p>
 
                 <Button
-                  className="mt-auto mb-4 sm:h-[50px] text-white uppercase"
+                  className="mt-auto mb-4 "
                   onClick={() => handleRegister()}
                 >
                   REGISTER

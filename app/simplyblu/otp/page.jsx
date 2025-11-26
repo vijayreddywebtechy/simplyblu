@@ -11,8 +11,8 @@ const page = () => {
   const router = useRouter();
 
   return (
-    <div className="bg-slate-50 px-3 py-5 md:py-8">
-      <div className="bg-white rounded-xl px-3 py-6 md:p-14 max-w-7xl mx-auto">
+    <div className="bg-slate-50 py-5 md:py-8">
+      <div className="bg-white rounded-xl page-container py-6 md:py-14">
         <div className="text-center mb-11">
           <h1 className="text-2xl sm:text-3xl lg:text-[32px] font-normal text-gray-medium leading-tight mb-3.5">
             Enter One-Time PIN (OTP)
