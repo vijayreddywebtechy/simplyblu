@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useGet } from "@/hooks/useCustomGet";
 import { useCustomMutation } from "@/hooks/useCustomMutation";
 import CustomDialog from "@/components/dynamic/CustomDialog";
+import { useRetry } from "@/hooks/useRetry";
 
 export default function AuthCallback() {
   const router = useRouter();
@@ -14,6 +15,13 @@ export default function AuthCallback() {
   const [processId, setProcessId] = useState("");
   const [isTechnicalDifficultyPopUpOpen, setIsTechnicalDifficultyPopUpOpen] =
     useState(false);
+
+  const { executeWithRetry } = useRetry({
+    setIsPopupOpen: setIsTechnicalDifficultyPopUpOpen,
+    redirectOnFailure: "/simplyblu/submission-status?type=callBack",
+    maxPopupRetries: 3,
+    onError: (err, count) => console.log("Fail:", count),
+  });
 
   const tokenMutation = useCustomMutation({
     url: process.env.NEXT_PUBLIC_ACCESS_TOKEN_URL,
@@ -61,8 +69,6 @@ export default function AuthCallback() {
   );
 
   useEffect(() => {
-    console.log(isApplicationDataError, isDigitalOfferError);
-
     if (isDigitalOfferError || isApplicationDataError) {
       setIsTechnicalDifficultyPopUpOpen(true);
     }
@@ -99,6 +105,25 @@ export default function AuthCallback() {
     fetchToken();
   }, [router, searchParams]);
 
+  const handleRetry = async () => {
+    setIsTechnicalDifficultyPopUpOpen(false);
+
+    await executeWithRetry(async () => {
+      const tasks = [];
+
+      if (isDigitalOfferError) tasks.push(retryDigitalOffer());
+      if (isApplicationDataError) tasks.push(retryApplicationData());
+
+      const results = await Promise.all(tasks);
+      const failed = results.some((r) => r.isError);
+      if (failed) {
+        return { success: false };
+      }
+
+      return { success: true };
+    });
+  };
+
   return (
     <CustomDialog
       open={isTechnicalDifficultyPopUpOpen}
@@ -107,15 +132,7 @@ export default function AuthCallback() {
       confirmText="RETRY"
       cancelText="BACK TO BROWSING"
       onCancel={() => setIsTechnicalDifficultyPopUpOpen(false)}
-      onConfirm={async () => {
-        if (isDigitalOfferError) {
-          await retryDigitalOffer();
-        }
-        if (isApplicationDataError) {
-          await retryApplicationData();
-        }
-        setIsTechnicalDifficultyPopUpOpen(false);
-      }}
+      onConfirm={handleRetry}
     >
       <p>Something went wrong on our side.</p>
     </CustomDialog>
