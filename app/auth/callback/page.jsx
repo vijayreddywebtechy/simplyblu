@@ -13,6 +13,7 @@ export default function AuthCallback() {
 
   const [offerId, setOfferId] = useState("");
   const [processId, setProcessId] = useState("");
+  const [businessId, setBusinessId] = useState("");
   const [isTechnicalDifficultyPopUpOpen, setIsTechnicalDifficultyPopUpOpen] =
     useState(false);
 
@@ -42,6 +43,7 @@ export default function AuthCallback() {
       const pre = JSON.parse(localStorage.getItem("preApplicationResponse"));
       setOfferId(pre?.digitalOfferId || "");
       setProcessId(pre?.processId || "");
+      setBusinessId(pre?.businessBPGUID || "");
     },
 
     onError: () => {
@@ -68,8 +70,18 @@ export default function AuthCallback() {
     Boolean(processId)
   );
 
+  const {
+    data: customerData,
+    isError: isCustomerDataError,
+    refetch: retryCustomersData,
+  } = useGet(
+    "external-partners-customer-data",
+    `/external-partners/customers/${businessId}`,
+    Boolean(tokenMutation.data?.access_token)
+  );
+
   useEffect(() => {
-    if (isDigitalOfferError || isApplicationDataError) {
+    if (isDigitalOfferError || isApplicationDataError || isCustomerDataError) {
       setIsTechnicalDifficultyPopUpOpen(true);
     }
   }, [isDigitalOfferError, isApplicationDataError]);
@@ -78,6 +90,7 @@ export default function AuthCallback() {
     if (digitalOffer && applicationData) {
       localStorage.setItem("digitalOffer", JSON.stringify(digitalOffer));
       localStorage.setItem("applicationData", JSON.stringify(applicationData));
+      localStorage.setItem("customerData", JSON.stringify(customerData));
       router.push("/simplyblu/application");
     }
   }, [digitalOffer, router, applicationData]);
@@ -113,6 +126,7 @@ export default function AuthCallback() {
 
       if (isDigitalOfferError) tasks.push(retryDigitalOffer());
       if (isApplicationDataError) tasks.push(retryApplicationData());
+      if (isCustomerDataError) tasks.push(retryCustomersData());
 
       const results = await Promise.all(tasks);
       const failed = results.some((r) => r.isError);
