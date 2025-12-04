@@ -10,7 +10,7 @@ const selectSuits = () => {
   const router = useRouter();
 
   const handleRegister = () => {
-    router.push("/simplyblu/application");
+    router.push("/create-profile");
   };
 
   return (

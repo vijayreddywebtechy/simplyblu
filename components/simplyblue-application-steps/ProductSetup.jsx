@@ -13,7 +13,7 @@ import amexcard from "@/public/img/american-express-card.png";
 import rcscard from "@/public/img/rcs-card.png";
 import receiptIcon from "@/public/icons/icn_receipt.svg";
 import { Button } from "@/components/ui/button";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { RadioGroup } from "@/components/ui/radio-group";
 import { Checkbox } from "../ui/checkbox";
 
 const ProductSetup = ({ onNext, onBack }) => {
