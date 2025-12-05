@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
+import { useForm, FormProvider } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { RadioGroup } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -12,25 +13,32 @@ import CustomReactSelect from "@/components/ui/CustomReactSelect";
 
 const Page = () => {
   const router = useRouter();
-  const [formData, setFormData] = useState({
-    firstName: "",
-    surname: "",
-    idNumber: "",
-    cellNumber: "",
-    email: "",
-    isOnlyOwner: "",
-    isCompanyRegistered: "",
-    isSoleShareholder: "",
-    businessType: "",
-    registeredBusinessName: "",
-    grossAnnualTurnover: "",
-    registrationNumber: "",
-    province: "",
-    city: "",
-    privacyAccepted: false,
+  const methods = useForm({
+    defaultValues: {
+      firstName: "",
+      surname: "",
+      idNumber: "",
+      cellNumber: "",
+      email: "",
+      isOnlyOwner: "",
+      isCompanyRegistered: "",
+      isSoleShareholder: "",
+      businessType: "",
+      registeredBusinessName: "",
+      grossAnnualTurnover: "",
+      registrationNumber: "",
+      province: "",
+      city: "",
+      privacyAccepted: false,
+    },
   });
 
+  const { watch, setValue } = methods;
   const [showFullPrivacy, setShowFullPrivacy] = useState(false);
+
+  // Watch form values
+  const isOnlyOwner = watch("isOnlyOwner");
+  const isCompanyRegistered = watch("isCompanyRegistered");
 
   const businessTypeOptions = [
     { value: "sole-proprietor", label: "Sole Proprietor" },
@@ -61,15 +69,18 @@ const Page = () => {
     { value: "port-elizabeth", label: "Port Elizabeth" },
   ];
 
-  const handleContinue = () => {
+  const handleContinue = (data) => {
+    console.log("Form Data:", data);
     // Navigate to next page or handle form submission
     router.push("/simplyblu/select-suits");
   };
 
   return (
-    <div className="bg-slate-50 min-h-screen py-8">
-      <div className="page-container bg-white rounded-xl shadow-sm p-6 sm:p-8 lg:p-12">
-        <div className="max-w-4xl mx-auto">
+    <FormProvider {...methods}>
+      <form onSubmit={methods.handleSubmit(handleContinue)}>
+        <div className="bg-slate-50 min-h-screen py-8">
+          <div className="page-container bg-white rounded-xl shadow-sm p-6 sm:p-8 lg:p-12">
+            <div className="max-w-4xl mx-auto">
           {/* Title */}
           <div className="text-center mb-12">
             <h1 className="text-xl font-normal text-gray-medium mb-7">
@@ -90,12 +101,9 @@ const Page = () => {
               <div>
                 <Label className="inline-block mb-1.5">NAME (as per ID)</Label>
                 <Input
+                  name="firstName"
                   type="text"
                   placeholder="Enter your first name"
-                  value={formData.firstName}
-                  onChange={(e) =>
-                    setFormData({ ...formData, firstName: e.target.value })
-                  }
                 />
               </div>
               <div>
@@ -103,12 +111,9 @@ const Page = () => {
                   SURNAME (as per ID)
                 </Label>
                 <Input
+                  name="surname"
                   type="text"
                   placeholder="Enter your surname"
-                  value={formData.surname}
-                  onChange={(e) =>
-                    setFormData({ ...formData, surname: e.target.value })
-                  }
                 />
               </div>
             </div>
@@ -118,23 +123,17 @@ const Page = () => {
               <div>
                 <Label className="inline-block mb-1.5">ID NUMBER</Label>
                 <Input
+                  name="idNumber"
                   type="text"
                   placeholder="Enter your ID number"
-                  value={formData.idNumber}
-                  onChange={(e) =>
-                    setFormData({ ...formData, idNumber: e.target.value })
-                  }
                 />
               </div>
               <div>
                 <Label className="inline-block mb-1.5">CELL PHONE NUMBER</Label>
                 <Input
+                  name="cellNumber"
                   type="text"
                   placeholder="Enter your phone number"
-                  value={formData.cellNumber}
-                  onChange={(e) =>
-                    setFormData({ ...formData, cellNumber: e.target.value })
-                  }
                 />
               </div>
             </div>
@@ -144,12 +143,9 @@ const Page = () => {
               <div>
                 <Label className="inline-block mb-1.5">EMAIL ADDRESS</Label>
                 <Input
+                  name="email"
                   type="email"
                   placeholder="Force@gmail.com"
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
                 />
               </div>
             </div>
@@ -167,31 +163,12 @@ const Page = () => {
                 Are you the only owner of the company?
               </Label>
               <RadioGroup
-                value={formData.isOnlyOwner}
-                onValueChange={(value) =>
-                  setFormData({ ...formData, isOnlyOwner: value })
-                }
-                className="flex gap-6"
-              >
-                <div className="flex items-center gap-2">
-                  <RadioGroupItem value="yes" id="yes" />
-                  <Label
-                    htmlFor="yes"
-                    className="text-sm font-normal cursor-pointer"
-                  >
-                    Yes
-                  </Label>
-                </div>
-                <div className="flex items-center gap-2">
-                  <RadioGroupItem value="no" id="no" />
-                  <Label
-                    htmlFor="no"
-                    className="text-sm font-normal cursor-pointer"
-                  >
-                    No
-                  </Label>
-                </div>
-              </RadioGroup>
+                name="isOnlyOwner"
+                options={[
+                  { value: "yes", label: "Yes" },
+                  { value: "no", label: "No" },
+                ]}
+              />
             </div>
 
             {/* Company Registered Question */}
@@ -200,71 +177,33 @@ const Page = () => {
                 Is your company registered?
               </Label>
               <RadioGroup
-                value={formData.isCompanyRegistered}
-                onValueChange={(value) =>
-                  setFormData({ ...formData, isCompanyRegistered: value })
-                }
-                className="flex gap-6"
-              >
-                <div className="flex items-center gap-2">
-                  <RadioGroupItem value="yes" id="company-registered-yes" />
-                  <Label
-                    htmlFor="company-registered-yes"
-                    className="text-sm font-normal cursor-pointer"
-                  >
-                    Yes
-                  </Label>
-                </div>
-                <div className="flex items-center gap-2">
-                  <RadioGroupItem value="no" id="company-registered-no" />
-                  <Label
-                    htmlFor="company-registered-no"
-                    className="text-sm font-normal cursor-pointer"
-                  >
-                    No
-                  </Label>
-                </div>
-              </RadioGroup>
+                name="isCompanyRegistered"
+                options={[
+                  { value: "yes", label: "Yes" },
+                  { value: "no", label: "No" },
+                ]}
+              />
             </div>
 
             {/* Sole Shareholder Question - Only show if isOnlyOwner is 'yes' */}
-            {formData.isOnlyOwner === "yes" && (
+            {isOnlyOwner === "yes" && (
               <div className="mb-6">
                 <Label className="block mb-3 uppercase">
                   ARE YOU THE SOLE SHAREHOLDER?
                 </Label>
                 <RadioGroup
-                  value={formData.isSoleShareholder}
-                  onValueChange={(value) =>
-                    setFormData({ ...formData, isSoleShareholder: value })
-                  }
-                  className="flex gap-6"
-                >
-                  <div className="flex items-center gap-2">
-                    <RadioGroupItem value="yes" id="sole-shareholder-yes" />
-                    <Label
-                      htmlFor="sole-shareholder-yes"
-                      className="text-sm font-normal cursor-pointer"
-                    >
-                      Yes
-                    </Label>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <RadioGroupItem value="no" id="sole-shareholder-no" />
-                    <Label
-                      htmlFor="sole-shareholder-no"
-                      className="text-sm font-normal cursor-pointer"
-                    >
-                      No
-                    </Label>
-                  </div>
-                </RadioGroup>
+                  name="isSoleShareholder"
+                  options={[
+                    { value: "yes", label: "Yes" },
+                    { value: "no", label: "No" },
+                  ]}
+                />
               </div>
             )}
 
 
             {/* Conditional fields based on company registration status */}
-            {formData.isCompanyRegistered === "yes" && (
+            {isCompanyRegistered === "yes" && (
               <>
                 {/* Registered Company Fields */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-14 mt-6">
@@ -273,15 +212,9 @@ const Page = () => {
                       REGISTERED BUSINESS NAME
                     </Label>
                     <Input
+                      name="registeredBusinessName"
                       type="text"
                       placeholder="Enter your business name"
-                      value={formData.registeredBusinessName}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          registeredBusinessName: e.target.value,
-                        })
-                      }
                     />
                   </div>
                   <div>
@@ -289,15 +222,9 @@ const Page = () => {
                       GROSS ANNUAL TURNOVER
                     </Label>
                     <Input
+                      name="grossAnnualTurnover"
                       type="text"
                       placeholder="Enter annual turnover"
-                      value={formData.grossAnnualTurnover}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          grossAnnualTurnover: e.target.value,
-                        })
-                      }
                     />
                   </div>
                 </div>
@@ -307,15 +234,9 @@ const Page = () => {
                       REGISTRATION NUMBER
                     </Label>
                     <Input
+                      name="registrationNumber"
                       type="text"
                       placeholder="Enter your business registration number"
-                      value={formData.registrationNumber}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          registrationNumber: e.target.value,
-                        })
-                      }
                     />
                   </div>
                 </div>
@@ -326,13 +247,10 @@ const Page = () => {
                     <CustomReactSelect
                       instanceId="company-province"
                       value={provinceOptions.find(
-                        (opt) => opt.value === formData.province
+                        (opt) => opt.value === watch("province")
                       )}
                       onChange={(selectedOption) =>
-                        setFormData({
-                          ...formData,
-                          province: selectedOption?.value || "",
-                        })
+                        setValue("province", selectedOption?.value || "")
                       }
                       options={provinceOptions}
                       placeholder="Please select"
@@ -342,12 +260,9 @@ const Page = () => {
                     <Label className="inline-block mb-1.5">CITY</Label>
                     <CustomReactSelect
                       instanceId="company-city"
-                      value={cityOptions.find((opt) => opt.value === formData.city)}
+                      value={cityOptions.find((opt) => opt.value === watch("city"))}
                       onChange={(selectedOption) =>
-                        setFormData({
-                          ...formData,
-                          city: selectedOption?.value || "",
-                        })
+                        setValue("city", selectedOption?.value || "")
                       }
                       options={cityOptions}
                       placeholder="Please select"
@@ -358,7 +273,7 @@ const Page = () => {
             )}
 
             {/* Unregistered Company Fields */}
-            {formData.isCompanyRegistered === "no" && (
+            {isCompanyRegistered === "no" && (
               <>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-14 mt-6">
                   <div>
@@ -366,15 +281,9 @@ const Page = () => {
                       BUSINESS NAME
                     </Label>
                     <Input
+                      name="registeredBusinessName"
                       type="text"
                       placeholder="Enter your business name"
-                      value={formData.registeredBusinessName}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          registeredBusinessName: e.target.value,
-                        })
-                      }
                     />
                   </div>
                   <div>
@@ -382,15 +291,9 @@ const Page = () => {
                       GROSS ANNUAL TURNOVER
                     </Label>
                     <Input
+                      name="grossAnnualTurnover"
                       type="text"
                       placeholder="Enter annual turnover"
-                      value={formData.grossAnnualTurnover}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          grossAnnualTurnover: e.target.value,
-                        })
-                      }
                     />
                   </div>
                 </div>
@@ -401,13 +304,10 @@ const Page = () => {
                     <CustomReactSelect
                       instanceId="company-province-unreg"
                       value={provinceOptions.find(
-                        (opt) => opt.value === formData.province
+                        (opt) => opt.value === watch("province")
                       )}
                       onChange={(selectedOption) =>
-                        setFormData({
-                          ...formData,
-                          province: selectedOption?.value || "",
-                        })
+                        setValue("province", selectedOption?.value || "")
                       }
                       options={provinceOptions}
                       placeholder="Please select"
@@ -417,12 +317,9 @@ const Page = () => {
                     <Label className="inline-block mb-1.5">CITY</Label>
                     <CustomReactSelect
                       instanceId="company-city-unreg"
-                      value={cityOptions.find((opt) => opt.value === formData.city)}
+                      value={cityOptions.find((opt) => opt.value === watch("city"))}
                       onChange={(selectedOption) =>
-                        setFormData({
-                          ...formData,
-                          city: selectedOption?.value || "",
-                        })
+                        setValue("city", selectedOption?.value || "")
                       }
                       options={cityOptions}
                       placeholder="Please select"
@@ -475,9 +372,9 @@ const Page = () => {
             <div className="flex items-start gap-3">
               <Checkbox
                 id="privacy"
-                checked={formData.privacyAccepted}
+                checked={watch("privacyAccepted")}
                 onCheckedChange={(checked) =>
-                  setFormData({ ...formData, privacyAccepted: checked })
+                  setValue("privacyAccepted", checked)
                 }
               />
               <Label
@@ -499,14 +396,15 @@ const Page = () => {
             <Button
               variant="outline"
               className="w-full max-w-[300px] mx-auto md:mx-0 h-12 border-primary text-primary hover:bg-primary/10"
+              type="button"
               onClick={() => router.back()}
             >
               BACK
             </Button>
             <Button
               className="w-full max-w-[300px] mx-auto md:mx-0 h-12 bg-primary hover:bg-primary/90 text-white"
-              onClick={handleContinue}
-              disabled={!formData.privacyAccepted}
+              type="submit"
+              disabled={!watch("privacyAccepted")}
             >
               CONTINUE
             </Button>
@@ -514,6 +412,8 @@ const Page = () => {
         </div>
       </div>
     </div>
+      </form>
+    </FormProvider>
   );
 };
 

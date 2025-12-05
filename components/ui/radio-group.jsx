@@ -1,31 +1,64 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import * as RadioGroupPrimitive from "@radix-ui/react-radio-group"
-import { Circle } from "lucide-react"
+import * as React from "react";
+import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
+import { Circle } from "lucide-react";
+import { Controller, useFormContext } from "react-hook-form";
+import { cn } from "@/lib/utils";
 
-import { cn } from "@/lib/utils"
+const RadioGroup = React.forwardRef(
+  ({ name, options = [], className, defaultValue = "", ...props }, ref) => {
+    const { control } = useFormContext();
 
-const RadioGroup = React.forwardRef(({ className, ...props }, ref) => {
-  return (<RadioGroupPrimitive.Root className={cn("grid gap-2", className)} {...props} ref={ref} />);
-})
-RadioGroup.displayName = RadioGroupPrimitive.Root.displayName
+    if (!control) {
+      throw new Error("RadioGroup must be used within a FormProvider");
+    }
 
-const RadioGroupItem = React.forwardRef(({ className, ...props }, ref) => {
-  return (
-    <RadioGroupPrimitive.Item
-      ref={ref}
-      className={cn(
-        "aspect-square h-5 w-5 rounded-full border border-gray-light text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
-        className
-      )}
-      {...props}>
-      <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
-        <Circle className="h-4 w-4 fill-current text-current" />
-      </RadioGroupPrimitive.Indicator>
-    </RadioGroupPrimitive.Item>
-  );
-})
-RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName
+    return (
+      <Controller
+        name={name}
+        control={control}
+        defaultValue={defaultValue}
+        render={({ field, fieldState: { error } }) => (
+          <div>
+            <RadioGroupPrimitive.Root
+              ref={ref}
+              className={cn("flex gap-5 mt-2.5", className)}
+              value={field.value}
+              onValueChange={field.onChange}
+              {...props}
+            >
+              {options.map((opt) => (
+                <div key={opt.value} className="flex items-center gap-3">
+                  <RadioGroupPrimitive.Item
+                    value={opt.value}
+                    id={`${name}-${opt.value}`}
+                    className="aspect-square h-5 w-5 rounded-full border border-gray-light text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
+                      <Circle className="h-4 w-4 fill-current text-current" />
+                    </RadioGroupPrimitive.Indicator>
+                  </RadioGroupPrimitive.Item>
+                  <label
+                    htmlFor={`${name}-${opt.value}`}
+                    className="text-sm cursor-pointer"
+                  >
+                    {opt.label}
+                  </label>
+                </div>
+              ))}
+            </RadioGroupPrimitive.Root>
 
-export { RadioGroup, RadioGroupItem }
+            {error && (
+              <p className="text-sm text-red-500 mt-1">{error.message}</p>
+            )}
+          </div>
+        )}
+      />
+    );
+  }
+);
+
+RadioGroup.displayName = "RadioGroup";
+
+export { RadioGroup };
